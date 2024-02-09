@@ -1,0 +1,10 @@
+.bundle/
+dist/
+**/.DS_Store
+.jekyll-cache/
+.jekyll-metadata
+node_modules/
+_site/
+.sass-cache/
+vendor/
+.wrangler/

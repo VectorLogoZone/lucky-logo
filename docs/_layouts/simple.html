@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>{{ title }}{% unless h1 %} - Lucky Logo{% endunless %}</title>
+    <meta name="referrer" content="unsafe-url" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+{%- if page.url == '/index.html' or page.url == '/' %}
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+{%- endif %}    
+    <link rel="stylesheet" href="/css/pico.min.css" />
+    <style>
+       .footer {
+            text-align: center;
+        }
+        .footer-icon {
+            margin-right: 0.25em;
+            vertical-align: middle;
+            height: 1.25em;
+            break-after: avoid;
+        }
+        .footer-link {
+            margin-left: 0.25em;
+            margin-right: 0.25em;
+            white-space: nowrap
+        }
+        div.result {
+            width: 100%;
+            text-align: center;
+        }
+        img.result {
+            height: 3cm;
+            width: 3cm;
+        }
+        /* too wide on big screens */
+        @media (min-width: 1536px) {
+            .container {
+                max-width: 1200px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <main class="container">
+        <h1>
+            <a href="/"><img alt="logo" src="/favicon.svg" style="height:1.5em;vertical-align:middle;margin-right:0.3em;" /></a>&nbsp;
+            {%- if h1 %}{{ h1 }}{% else %}{{ title }}{% endif %}
+        </h1>
+        <hr />
+        {{ content }}
+        <hr />
+        <p class="footer"><small>
+            <a class="footer-link" href="https://logosear.ch/"><img alt="" class="footer-icon" src="https://www.vectorlogo.zone/logos/logosearch/logosearch-icon.svg" />Logo&nbsp;Search</a>
+            | <a class="footer-link" href="https://github.com/VectorLogoZone/logo-of-the-day"><img alt="" class="footer-icon" src="https://www.vectorlogo.zone/logos/github/github-tile.svg" />Source</a>
+            | <a class="footer-link" href="https://www.vectorlogo.zone/"><img alt="" class="footer-icon" src="https://www.vectorlogo.zone/logos/vectorlogozone/vectorlogozone-tile.svg" />VectorLogoZone</a>
+        </small></p>
+    </main>
+</body>
+</html>
+<!-- generated on {{generated}} -->
