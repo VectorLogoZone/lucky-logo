@@ -50,6 +50,7 @@ Separate cache of page contents:
 
 ## Future
 
+- toggle for withBackground css class
 - handle `data:` URLs
 - option of redirect vs content
 - option to specify fallback image

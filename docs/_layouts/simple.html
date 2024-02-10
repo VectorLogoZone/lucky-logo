@@ -29,10 +29,15 @@
             text-align: center;
         }
         img.result {
-            height: 3cm;
-            width: 3cm;
+            padding: 0.25cm;
+            height: 4cm;
+            width: 4cm;
         }
-        /* too wide on big screens */
+        .withBackground {
+            background: url("/images/memphis-mini.png") repeat top left;
+        }
+
+        /* pico too wide on big screens */
         @media (min-width: 1536px) {
             .container {
                 max-width: 1200px;

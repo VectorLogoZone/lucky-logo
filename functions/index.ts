@@ -68,10 +68,7 @@ export const onRequest: PagesFunction<Env> = async (ctx) => {
       />
     </label>
     <div class="result">
-        <img class="result"
-            src="${logoUrl}"
-            
-        />
+        <a href="${logoUrl}"><img class="result" src="${logoUrl}" /></a>
     <!--<label for="background">
       <input type="checkbox" role="switch" id="background" name="background">
       Background
