@@ -17,13 +17,26 @@ const buttonTextOptions = [
     `Here's hoping...`,
     'I believe!',
     'Fortune favors the bold!',
+];
 
-
-]
+const sampleWebsites = [
+    'https://logosear.ch/',
+    'https://iconsear.ch/',
+    'https://www.vectorlogo.zone/',
+    'https://www.feed.style/',
+    'https://www.fortune.ninja/',
+    'https://www.sitemap.style/',
+    'https://www.supertinyicons.org/',
+    'https://resolve.rs/',
+    'https://www.freeloader.wtf/',
+];
 
 export const onRequest: PagesFunction<Env> = async (ctx) => {
 
-    const website = new URL(ctx.request.url).searchParams.get('url') || 'https://logosear.ch/';
+    let website = new URL(ctx.request.url).searchParams.get('url');
+    if (!website || sampleWebsites.indexOf(website) !== -1) {
+      website = sampleWebsites[Math.floor(Math.random() * sampleWebsites.length)];
+    }
     const logoUrl = `/logo?url=${encodeURIComponent(website)}`;
 
     const buttonText = buttonTextOptions[Math.floor(Math.random() * buttonTextOptions.length)];
@@ -59,6 +72,10 @@ export const onRequest: PagesFunction<Env> = async (ctx) => {
             src="${logoUrl}"
             
         />
+    <!--<label for="background">
+      <input type="checkbox" role="switch" id="background" name="background">
+      Background
+    </label>-->
     </div>
 </form>`;
 
