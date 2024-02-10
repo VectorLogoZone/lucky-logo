@@ -7,19 +7,22 @@ interface Env {
     CACHE: KVNamespace;
 }
 
+const buttonTextOptions = [
+    'Roll the dice!',
+    'Try your luck!',
+    `I'm feeling lucky!`,
+    'Spin the wheel!',
+]
+
 export const onRequest: PagesFunction<Env> = async (ctx) => {
 
-    const now = DateTime.now().toUTC();
-    const today = now.startOf('day').toISODate();
-    const expires = now.endOf('day').toHTTP();
     const website = new URL(ctx.request.url).searchParams.get('url') || 'https://logosear.ch/';
     const logoUrl = `/logo?url=${encodeURIComponent(website)}`;
 
-    const data = {
-        title: `Lucky Logo: when you are feeling lucky in your logo search!`,
-        h1: `Lucky Logo`,
-        content: `
-<p>Lucky Logo is a quick way to embed a website's logo without doing any work.  Just use <code>&lt;img src="https://lucky.logosearch.ch/logo?url=https://<i>website_url</i>" &gt;</code></p>
+    const buttonText = buttonTextOptions[Math.floor(Math.random() * buttonTextOptions.length)];
+
+    const content = `
+<p>Lucky Logo is a quick way to embed a website's logo without doing any work.  Just use <code>&lt;img src="https://lucky.logosearch.ch/logo?url=https://<i>website_url</i>" &gt;</code> <a href="faq.html">More...</p>
         
 <form method="GET" action="/">
   <fieldset>
@@ -32,7 +35,7 @@ export const onRequest: PagesFunction<Env> = async (ctx) => {
     </label>
   <input
     type="submit"
-    value="Roll the dice!"
+    value="${buttonText}"
   />
   </fieldset>
 
@@ -50,17 +53,17 @@ export const onRequest: PagesFunction<Env> = async (ctx) => {
             
         />
     </div>
-</form>
-        `,
+</form>`;
 
-
-        page: { url: '/' },  // for jekyll compability
+    const pageData = {
+        h1: `Lucky Logo`,
+        title: `Lucky Logo: when you are feeling lucky in your logo search!`,
+        url: '/',
     }
 
-    const html = await render(data);
+    const html = await render(pageData, content);
     return new Response(html, { headers: {
         'Cache-Control': 'public',
         'Content-Type': 'text/html',
-        'Expires':  expires,
         } });
 }

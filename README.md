@@ -10,6 +10,12 @@ The site is built with [Cloudflare Pages](https://developers.cloudflare.com/page
 
 Then `./run.sh`!
 
+## Usage
+
+I'm running this server for free at Cloudflare.  You can use it for *light* non-commercial stuff.  
+
+If it starts costing me money, it will go away.  Or worse.
+
 ## License
 
 [MIT](LICENSE.txt)

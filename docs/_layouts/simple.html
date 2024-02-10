@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8" />
-    <title>{{ title }}{% unless h1 %} - Lucky Logo{% endunless %}</title>
+    <title>{{ page.title }}{% unless page.h1 %} - {{site.title}}{% endunless %}</title>
     <meta name="referrer" content="unsafe-url" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 {%- if page.url == '/index.html' or page.url == '/' %}
@@ -44,7 +44,7 @@
     <main class="container">
         <h1>
             <a href="/"><img alt="logo" src="/favicon.svg" style="height:1.5em;vertical-align:middle;margin-right:0.3em;" /></a>&nbsp;
-            {%- if h1 %}{{ h1 }}{% else %}{{ title }}{% endif %}
+            {%- if page.h1 %}{{ page.h1 }}{% else %}{{ page.title }}{% endif %}
         </h1>
         <hr />
         {{ content }}

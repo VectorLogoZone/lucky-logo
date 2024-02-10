@@ -1,0 +1,8 @@
+---
+title: FAQ
+---
+
+{% for faq in site.data.faq %}
+<h4 id="{faq.slug}">{{ faq.question | markdownify | replace: "<p>", "" | replace: "</p>", "" }}</h4>
+{{ faq.answer | markdownify }}
+{% endfor %}

@@ -1,0 +1,43 @@
+- slug: "why"
+  question: "Why did you make this?"
+  answer: |
+    I needed a simple way to get a logo for a project I am working on ([Feed.Style](https://www.feed.style)).  I didn't like any of the [existing options](alternatives.html) that I found, and it was a fun weekend project.
+
+- slug: "how"
+  question: "How does it work?"
+  answer: |
+    At the moment, it simply fetches the website's favicon and returns it as an image.  I plan to add more features in the future, but I don't have a specific timeline.
+
+- slug: "free"
+  question: "Can I use this for free?"
+  answer: |
+    I made it for my own use, and don't mind sharing for light, non-commercial use.  I'm not going to provide support and you should not count on it being here forever.  If you want to use it for something serious or commercial, you should host it yourself: it is not hard to set up and run.
+
+- slug: "sucks"
+  question: "This sucks!"
+  answer: |
+    I'm sorry you feel that way.  If you don't like it, please try one of the [alternatives](alternatives.html).
+
+- slug: "greatbut"
+  question: "This is great, but I need..."
+  answer: |
+    I'm glad you like it!  I plan to add more features in the future, but I don't have a specific timeline.  But it is [open source](https://github.com/VectorLogoZone/lucky-logo) and [contributions are welcome](https://github.com/VectorLogoZone/lucky-logo/CONTRIBUTING.md)!
+    
+- slug: "percents"
+  question: "What is with all the `%` characters in the image URL on the demo page?"
+  answer: |
+    This is "URL encoding": how characters that aren't allowed in URLs are handled.  Since the demo page will handle any URL, it is pretty conservative and encodes almost everything.  If you just have a URL with normal characters, you can use it as is.  If you have a URL with special characters, you will need to [URL encode](https://www.fileformat.info/convert/text/url-encoder-decoder.htm) them.
+
+- slug: "need-prefix"
+  question: "Do I need to include the `https://` in the URL?"
+  answer: |
+    For the momemt, yes.  I will fix that at some point soon.
+    
+# No, the URL will work with or without it.
+
+- slug: "http"
+  question: "Will it work with insecure (i.e. `http://`) URLs?"
+  answer: |
+    If you specify an `http://` website, it will get the logo.  But you can't use the resulting image on a secure (i.e. `https://`) website.  If you want to use the image on a secure website, you need to use a secure URL.
+
+# privacy
