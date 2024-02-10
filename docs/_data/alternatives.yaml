@@ -1,0 +1,94 @@
+- name: BestIcon
+  summary: Self-hosted favicon fetcher
+  detail: |
+    Code (golang) is available at [mat/besticon](https://github.com/mat/besticon)
+
+- name: Clearbit
+  url: "https://clearbit.com/logo"
+  summary: "Freemium logo fetcher API"
+  detail: |
+    Free tier is limited to 50 requests per month and requires attribution.  Paid tier is $99/month for 5000 requests.  Interesting [Show HN post](https://news.ycombinator.com/item?id=9806319) from when it was launched.  Recently purchased by [HubSpot](https://www.hubspot.com/).
+
+- name: DuckDuckGo&nbsp;favicons
+  summary: Undocumented favicon fetcher suitable for embedding
+  detail: |
+    URLs should be `https://icons.duckduckgo.com/ip3/logosear.ch.ico`.
+
+- name: Favicon Grabber
+  url: "https://favicongrabber.com/"
+  summary: "Favicon fetcher: Not working, but code is available"
+  detail: |
+    Code is available at [antongunov/favicongrabber.com](https://github.com/antongunov/favicongrabber.com)
+
+- name: FaviconKit
+  url: "https://faviconkit.com/"
+  summary: "Free favicon fetcher: not working"
+  detail: |
+    Expired cert
+
+- name: Google favicons
+  summary: Undocumented favicon fetcher
+  detail: |
+    URLs should be `https://www.google.com/s2/favicons?domain=lucky.logosear.ch`.  Redirects, and isn't very reliable when I tested.
+
+- name: IconHorse
+  url: "https://icon.horse/"
+  summary: Freemium favicon fetcher
+  detail: |
+    Free tier is limited to 100 requests per month.  Paid tier is $5/month for 1000 requests.  Interesting [blog post](https://dev.to/mtimofiiv/how-why-i-built-a-favicon-fetching-service-32nl) from the author of the service.
+
+- name: Pirsch Faser
+  summary: Self-hosted favicon fetcher
+  detail: |
+    Code (golang) is available at [pirsch-analytics/faser](https://github.com/pirsch-analytics/faser).  You need to run it yourself.
+
+- name: RealFaviconGenerator
+  url: "https://realfavicongenerator.net/api/#favicon-download"
+  summary: Free favicon fetcher API
+  detail: |
+    You need an API key.  I requested one, but never got it, so I don't know how well it works.
+
+- name: RiteKit
+  url: "https://ritekit.com/api-demo/company-logo"
+  summary: "Commercial logo API"
+  detail: |
+    They did an [excellent article](https://medium.com/hashtag-academy/ritekit-company-logo-api-as-alternative-to-brandfetch-1d0702cc2342) comparing their service to the other main logo APIs.
+
+- name: AbstractAPI
+  url: "https://www.abstractapi.com/api/company-enrichment"
+
+- name: AirHex
+  url: "https://airhex.com/api/logos/"
+
+- name: AllinDigital
+  url: "https://www.allindigital.se/company-logo-api"
+
+- name: API Ninjas
+  url: "https://api-ninjas.com/api/logo"
+
+- name: Benzinga
+  url: "https://www.benzinga.com/apis/cloud-product/company-logo-api/"
+
+- name: BigPicture
+  url: "https://docs.bigpicture.io/api/#attributes"
+
+- name: BrandFetch
+  url: "https://brandfetch.com/developers/demo"
+
+- name: CompaniesLogo
+  url: "https://companieslogo.com/"
+
+- name: CUFinder
+  url: "https://cufinder.io/company-logo-finder"
+
+- name: EODHD
+  url: "https://eodhd.com/financial-apis-blog/5000-company-logos/"
+
+- name: Klazify
+  url: "https://www.klazify.com/pages/logo-api"
+
+- name: Uplead
+  url: "https://www.uplead.com/free-company-logo-api/"
+
+- name: Xignite
+  url: "https://www.xignite.com/Product/logos-api#/productoverview"

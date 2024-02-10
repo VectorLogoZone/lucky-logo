@@ -9,9 +9,16 @@ interface Env {
 
 const buttonTextOptions = [
     'Roll the dice!',
-    'Try your luck!',
+    'Try me!',
     `I'm feeling lucky!`,
     'Spin the wheel!',
+    'Please, god, let this work!',
+    'Lord have mercy!',
+    `Here's hoping...`,
+    'I believe!',
+    'Fortune favors the bold!',
+
+
 ]
 
 export const onRequest: PagesFunction<Env> = async (ctx) => {
@@ -22,7 +29,7 @@ export const onRequest: PagesFunction<Env> = async (ctx) => {
     const buttonText = buttonTextOptions[Math.floor(Math.random() * buttonTextOptions.length)];
 
     const content = `
-<p>Lucky Logo is a quick way to embed a website's logo without doing any work.  Just use <code>&lt;img src="https://lucky.logosearch.ch/logo?url=https://<i>website_url</i>" &gt;</code> <a href="faq.html">More...</p>
+<p>Lucky Logo is a quick way to embed a website's logo without doing any work.  <a href="faq.html">More...</a></p>
         
 <form method="GET" action="/">
   <fieldset>
@@ -41,7 +48,7 @@ export const onRequest: PagesFunction<Env> = async (ctx) => {
 
 
       <label>
-      Lucky Logo URL
+      Lucky Logo <code>&lt;img src="" &gt;</code>
       <input
         value="https://lucky.logosear.ch${logoUrl}"
         id="logourl"
