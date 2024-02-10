@@ -1,4 +1,5 @@
 - name: BestIcon
+  url: "https://besticon-demo.herokuapp.com/"
   summary: Self-hosted favicon fetcher
   detail: |
     Code (golang) is available at [mat/besticon](https://github.com/mat/besticon)
