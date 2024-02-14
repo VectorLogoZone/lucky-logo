@@ -7,11 +7,11 @@ Gets the logo for a URL
 - [ ] `parseUrl()`: handle hostnames
 - [ ] figure out `Response.redirect` for local urls
 - [ ] script to generate a list of URLs from the top N websites
-- [ ] use site vars from `docs/_config.yaml`
+- [ ] `/test.html`: takes a list of urls & returns logo.  Optional additional columns for other services
 - [ ] errors: enum of custom type
 - [ ] errors: include an emoji fallback image for each error
 - [ ] `/errors.html` - display each error with description, how-to-fix, image
-- [ ] `/test.html`: takes a list of urls & returns logo.  Optional additional columns for other services
+- [ ] use site vars from `docs/_config.yaml`
 - [ ] `/api.json?url=` returns map of various logo URLs it finds
 - [ ] `/all.html` form: shows all logos that it finds for a single site
 - [ ] `/recent.html` recent results
@@ -51,6 +51,7 @@ Separate cache of page contents:
 ## Future
 
 - toggle for withBackground css class
+- home page clickable image: go to website (not image) for samples
 - handle `data:` URLs
 - option of redirect vs content
 - option to specify fallback image
