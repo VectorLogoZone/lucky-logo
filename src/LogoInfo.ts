@@ -1,6 +1,6 @@
 
 export type LogoInfo = {
-    provinence: "root" | "header",
+    provenance: string,
     url: string;
     error?: string;
 };

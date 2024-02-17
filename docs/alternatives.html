@@ -6,7 +6,7 @@ title: Alternative Logo Services
     <tbody>
 {% for alt in site.data.alternatives %}
         <tr>
-            <!-- LATER: when more provinences are done <td>{% if alt.url %}<img alt="{{alt.name}} logo" src="/logo?url={{alt.url}}" style="width:1em;height:1em;"/>{% endif %}</td> -->
+            <!-- LATER: when more provenances are done <td>{% if alt.url %}<img alt="{{alt.name}} logo" src="/logo?url={{alt.url}}" style="width:1em;height:1em;"/>{% endif %}</td> -->
             <td>{% if alt.url %}<a href="{{alt.url}}">{{alt.name}}</a>{% else %}{{alt.name}}{% endif %}</td>
             <td>{% if alt.detail %}<details><summary>{{alt.summary}}</summary>{{alt.detail | markdownify | replace: "<p>", "" | replace: "</p>", "" }}</details>{% else %}{{alt.summary}}{% endif %}</td>
         </tr>

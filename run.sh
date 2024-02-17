@@ -7,5 +7,11 @@
 jekyll build --source docs --destination dist
 
 
-npx wrangler pages dev dist --live-reload --compatibility-date=2023-10-30 --port=4000 --env dev --kv=CACHE
+npx wrangler pages dev dist \
+    --live-reload \
+    --compatibility-flags="nodejs_compat" \
+    --compatibility-date=2023-10-30 \
+    --port=4000 \
+    --env dev \
+    --kv=CACHE
 
