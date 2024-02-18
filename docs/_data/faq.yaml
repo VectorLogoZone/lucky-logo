@@ -22,7 +22,22 @@
   question: "This is great, but I need..."
   answer: |
     I'm glad you like it!  I plan to add more features in the future, but I don't have a specific timeline.  But it is [open source](https://github.com/VectorLogoZone/lucky-logo) and [contributions are welcome](https://github.com/VectorLogoZone/lucky-logo/CONTRIBUTING.md)!
-    
+
+- slug: "coverage"
+  question: "What websites does it have logos for?"
+  answer: |
+    In theory, it should work on any website.  In practice: try the [bulk testing tool](/test.html) and see how it does on your actual data.
+
+- slug: "algorithms"
+  question: "How does it find the logos?"
+  answer: |
+    It uses a few different methods to find the logo.  
+    * `favicon.ico` in the root of the website
+    * `favicon.ico` in the root of the public suffix hostname
+    * various metadata in the HTML at the URL
+
+    You can see all the logos that it finds for a given your on the [All Logos](/all-logos.html) page.
+
 - slug: "percents"
   question: "What is with all the `%` characters in the image URL on the demo page?"
   answer: |

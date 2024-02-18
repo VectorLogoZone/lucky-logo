@@ -1,5 +1,6 @@
 import { PagesFunction } from '@cloudflare/workers-types';
 import { LogoInfo } from './LogoInfo';
+import pino from 'pino';
 
 export type LogoContext = {
     basehost?: string,              // hostname without www.
@@ -9,5 +10,6 @@ export type LogoContext = {
     rawUrl: string,                 // raw url= query parameter
     url?: URL,                      // parsed URL
     errCode?: string,
-    logos?: LogoInfo[]
+    logos?: LogoInfo[],
+    logger: pino.Logger,
 }

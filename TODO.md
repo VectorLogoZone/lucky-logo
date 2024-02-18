@@ -2,8 +2,6 @@
 
 Gets the logo for a URL
 
-- [x] `/logo?url=` returns a logo: the actual bytes or a redirect - appropriate for an img src=
-- [ ] fromRoot: check that it doesn't 404
 - [ ] figure out `Response.redirect` for local urls
 - [ ] script to generate a list of URLs from the top N websites
 - [ ] `/test.html`: takes a list of urls & returns logo.  Optional additional columns for other services

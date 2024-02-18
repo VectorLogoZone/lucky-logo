@@ -40,13 +40,13 @@ export async function onRequest(pageContext: PagesFunction) {
     if (input) {
         const urls = input.split('\n');
         for (let i = 0; i < urls.length; i++) {
-            const lctx = await parseUrl(pageContext, urls[i]);
+            const lctx = await parseUrl(pageContext, urls[i].trim());
             if (lctx.errCode) {
                 continue;
             }
             const linkUrl = lctx.url ? lctx.url.href : '';
             resultRows.push(`    <tr>
-        <td><a href="${linkUrl}">${urls[i]}</a></td>
+        <td><a href="/all-logos.html?url=${encodeURIComponent(lctx.rawUrl)}">${urls[i]}</a></td>
         <td><a href="/logo?url=${encodeURIComponent(urls[i])}"><img alt="Logo from Lucky Logo" class="result" src="/logo?url=${encodeURIComponent(urls[i])}" /></a></td>
         <td><img alt="Logo from Clearbit" class="result" src="https://logo.clearbit.com/${lctx.basehost}" /></td>
     </tr>`);

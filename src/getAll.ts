@@ -4,22 +4,24 @@ import { fromRoot } from './fromRoot';
 import { fromPublicSuffixRoot } from './fromPublicSuffixRoot';
 import { fromHeader } from './fromHeader';
 
-export async function getFirst(context: LogoContext): Promise<LogoInfo | null> {
+export async function getAll(context: LogoContext): Promise<LogoInfo[]> {
 
-    const headerLogos = await fromHeader(context);
-    if (headerLogos && headerLogos.length > 0) {
-        return headerLogos[0];
-    }
+    const logos: LogoInfo[] = [];
 
     let logo = await fromRoot(context);
     if (logo) {
-        return logo;
+        logos.push(logo);
     }
 
     logo = await fromPublicSuffixRoot(context);
     if (logo) {
-        return logo;
+        logos.push(logo);
     }
 
-    return null;
+    const headerLogos = await fromHeader(context);
+    if (headerLogos) {
+        logos.push(...headerLogos);
+    }
+
+    return logos;
 }
