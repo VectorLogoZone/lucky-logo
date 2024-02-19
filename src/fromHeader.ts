@@ -28,7 +28,11 @@ export async function fromHeader(lctx: LogoContext): Promise<LogoInfo[] | null> 
 
     const logos: LogoInfo[] = [];
 
-    const response = await fetch(lctx.url);
+    const response = await fetch(lctx.url, {
+        headers: {
+            'User-Agent': 'LuckyLogoBot',
+        },
+    });
     if (response.status != 200) {
         lctx.logger.warn({ status: response.status, statusText: response.statusText, url: lctx.url }, `fromHeader() HTTP error`);
         return null;
@@ -47,20 +51,26 @@ export async function fromHeader(lctx: LogoContext): Promise<LogoInfo[] | null> 
 
     const $ = cheerio.load(html);
 
-    for (const thing of thingsToTry) {
-        let url = $(thing.selector).attr(thing.attribute);
-        if (!url) {
+    for (const target of thingsToTry) {
+        let $things = $(target.selector);
+        if ($things.length == 0) {
             continue;
         }
-        url = toAbsoluteUrl(url, lctx.url.toString());
-        if (await isImage(lctx, url)) {
-            logos.push({
-                provenance: `fromHeader:${thing.selector}`,
-                url: url,
-            });
+        for (const thingEl of $things) {
+            let url = $(thingEl).attr(target.attribute);
+            if (!url) {
+                lctx.logger.info({ selector: target.selector }, `found header, but no URL`);
+                continue;
+            }
+            url = toAbsoluteUrl(url, lctx.url.toString());
+            if (await isImage(lctx, url)) {
+                logos.push({
+                    provenance: `fromHeader:${target.selector}`,
+                    url: url,
+                });
+            }
         }
     }
 
     return logos.length > 0 ? logos : null;
-
 }
