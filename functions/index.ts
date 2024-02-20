@@ -61,7 +61,7 @@ export const onRequest: PagesFunction<Env> = async (ctx) => {
 
 
       <label>
-      Lucky Logo <code>&lt;img src="" &gt;</code>
+      URL to use in your &lt;img&gt; tag:
       <input
         value="https://lucky.logosear.ch${logoUrl}"
         id="logourl"

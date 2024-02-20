@@ -3,6 +3,7 @@ import { LogoInfo } from './LogoInfo';
 import { fromRoot } from './fromRoot';
 import { fromPublicSuffixRoot } from './fromPublicSuffixRoot';
 import { fromHeader } from './fromHeader';
+import { fromBimi } from './fromBimi';
 
 export async function getAll(context: LogoContext): Promise<LogoInfo[]> {
 
@@ -21,6 +22,11 @@ export async function getAll(context: LogoContext): Promise<LogoInfo[]> {
     const headerLogos = await fromHeader(context);
     if (headerLogos) {
         logos.push(...headerLogos);
+    }
+
+    const bimiLogo = await fromBimi(context);
+    if (bimiLogo) {
+        logos.push(bimiLogo);
     }
 
     return logos;

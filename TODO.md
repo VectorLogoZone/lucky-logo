@@ -2,15 +2,20 @@
 
 Gets the logo for a URL
 
+- [ ] home page `<img>` example missing URL
+- [ ] home page: example URL (text) should use `encodeURI`
+- [ ] home page: image should hyperlink to `all-logos.html`
+- [ ] faq: link to all-logos.html
+- [ ] wrong license in readme
+- [ ] change contribution: none
+- [ ] wrap `fetch()` calls: `loadUrl()`
+- [ ] global settings: from `docs/_config.yaml`
+- [ ] support for `LOG_LEVEL`
 - [ ] figure out `Response.redirect` for local urls
 - [ ] script to generate a list of URLs from the top N websites
-- [ ] `/test.html`: takes a list of urls & returns logo.  Optional additional columns for other services
 - [ ] errors: enum of custom type
 - [ ] errors: include an emoji fallback image for each error
 - [ ] `/errors.html` - display each error with description, how-to-fix, image
-- [ ] use site vars from `docs/_config.yaml`
-- [ ] `/api.json?url=` returns map (or array?) of various logo URLs it finds
-- [ ] `/all.html` form: shows all logos that it finds for a single site
 - [ ] `/recent.html` recent results
 - [ ] note about `referrerpolicy=origin`
 - [ ] `/users.html` - recent users from referrers
@@ -19,10 +24,11 @@ Gets the logo for a URL
 
 How we found the image. Used as key for API results map
 
-- [x] rootfavicon
+- [ ] BIMI
+- [ ] atom
+- [ ] rss
 - [ ] vectorlogozone
 - [ ] wikipedia
-- [ ] BIMI
 - [ ] headerfavicon
 - [ ] header:* - Apple/OG/etc images specified in header
 
