@@ -2,6 +2,8 @@ import { LogoContext } from './LogoContext';
 
 
 export async function dnsLookup(lctx:LogoContext, recType:string, domain:string):Promise<string[]> {
+
+    // https://developers.cloudflare.com/1.1.1.1/encryption/dns-over-https/make-api-requests/
     const url = `https://cloudflare-dns.com/dns-query?name=${domain}&type=${recType}`;
     const response = await fetch(url, {
         headers: {

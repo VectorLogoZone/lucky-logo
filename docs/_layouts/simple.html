@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 {%- if page.url == '/index.html' or page.url == '/' %}
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-{%- endif %}    
+{%- endif %}
     <link rel="stylesheet" href="/css/pico.min.css" />
     <style>
        .footer {
@@ -47,8 +47,27 @@
 </head>
 <body>
     <main class="container">
+        <nav>
+            <ul>
+                <li><a href="/"><img alt="logo" src="/favicon.svg" style="height:1.5em;vertical-align:middle;margin-right:0.3em;" /><strong>Lucky Logo</strong></a></li>
+            </ul>
+            <ul>
+                <li><a href="/" class="secondary">Home</a></li>
+                <li><a href="/faq" class="secondary">FAQ</a></li>
+                <li>
+                    <details class="dropdown">
+                        <summary>
+                            Test
+                        </summary>
+                        <ul dir="rtl">
+                            <li><a href="/test.html">Bulk</a></li>
+                            <li><a href="/all-logos.html">Single</a></li>
+                        </ul>
+                    </details>
+                </li>
+            </ul>
+        </nav>
         <h1>
-            <a href="/"><img alt="logo" src="/favicon.svg" style="height:1.5em;vertical-align:middle;margin-right:0.3em;" /></a>&nbsp;
             {%- if page.h1 %}{{ page.h1 }}{% else %}{{ page.title }}{% endif %}
         </h1>
         <hr />
