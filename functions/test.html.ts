@@ -26,7 +26,7 @@ export async function onRequest(pageContext: PagesFunction) {
 <form method="POST" action="/test.html">
   <fieldset>
     <label>
-      Websites <span style="float:right;"><a href="?random=1">Random</a></span>
+      Websites <span style="float:right;"><a href="?random=10">Try 10 random URLs</a></span>
       <textarea name="urls" rows="7">${input ? input : ''}</textarea>
     </label>
   <input
@@ -47,8 +47,8 @@ export async function onRequest(pageContext: PagesFunction) {
             const linkUrl = lctx.url ? lctx.url.href : '';
             resultRows.push(`    <tr>
         <td><a href="/all-logos.html?url=${encodeURIComponent(lctx.rawUrl)}">${urls[i]}</a></td>
-        <td><a href="/logo?url=${encodeURIComponent(urls[i])}"><img alt="Logo from Lucky Logo" class="result" src="/logo?url=${encodeURIComponent(urls[i])}" /></a></td>
-        <td><img alt="Logo from Clearbit" class="result" src="https://logo.clearbit.com/${lctx.basehost}" /></td>
+        <td class="resultwrapper"><a href="/logo?url=${encodeURIComponent(urls[i])}"><img alt="Logo from Lucky Logo" class="result" src="/logo?url=${encodeURIComponent(urls[i])}" /></a></td>
+        <td class="resultwrapper"><img alt="Logo from Clearbit" class="result" src="https://logo.clearbit.com/${lctx.basehost}" /></td>
     </tr>`);
         }
     }

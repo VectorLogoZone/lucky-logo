@@ -30,7 +30,7 @@ export async function onRequest(pageContext: PagesFunction) {
         for (let i = 0; i < logos.length; i++) {
             resultRows.push(`        <tr>
             <td>${logos[i].provenance}<br/><a href="${logos[i].url}">${logos[i].url}</a></td>
-            <td><img alt="Logo via ${logos[i].provenance}" class="result" src="${logos[i].url}" /></td>
+            <td class="resultwrapper"><img alt="Logo via ${logos[i].provenance}" class="result" src="${logos[i].url}" /></td>
         </tr>`);
         }
         table = `<table>

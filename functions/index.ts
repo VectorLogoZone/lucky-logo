@@ -38,6 +38,7 @@ export const onRequest: PagesFunction<Env> = async (ctx) => {
       website = sampleWebsites[Math.floor(Math.random() * sampleWebsites.length)];
     }
     const logoUrl = `/logo?url=${encodeURIComponent(website)}`;
+    const allUrl = `/all-logos.html?url=${encodeURIComponent(website)}`;
 
     const buttonText = buttonTextOptions[Math.floor(Math.random() * buttonTextOptions.length)];
 
@@ -53,10 +54,7 @@ export const onRequest: PagesFunction<Env> = async (ctx) => {
         name="url"
       />
     </label>
-  <input
-    type="submit"
-    value="${buttonText}"
-  />
+  <input type="submit" value="${buttonText}" />
   </fieldset>
 
 
@@ -67,12 +65,14 @@ export const onRequest: PagesFunction<Env> = async (ctx) => {
         id="logourl"
       />
     </label>
-    <div class="result">
-        <a href="${logoUrl}"><img class="result" src="${logoUrl}" /></a>
+    <div class="centered">
+      <div class="resultwrapper">
+        <a href="${allUrl}"><img class="result" src="${logoUrl}" /></a>
     <!--<label for="background">
       <input type="checkbox" role="switch" id="background" name="background">
       Background
     </label>-->
+      </div>
     </div>
 </form>`;
 
