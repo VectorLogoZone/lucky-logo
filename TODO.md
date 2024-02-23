@@ -22,6 +22,7 @@ Gets the logo for a URL
 - [ ] rss
 - [ ] vectorlogozone
 - [ ] wikipedia
+- [ ] schema.org metadata
 
 ## Cache structure
 
