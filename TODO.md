@@ -2,11 +2,7 @@
 
 Gets the logo for a URL
 
-- [ ] home page `<img>` example missing URL
-- [ ] home page: example URL (text) should use `encodeURI`
-- [ ] home page: image should hyperlink to `all-logos.html`
-- [ ] faq: link to all-logos.html
-- [ ] wrong license in readme
+- [ ] more info from fetches: contentType, contentLength, sniffType, width/height, etc
 - [ ] change contribution: none
 - [ ] wrap `fetch()` calls: `loadUrl()`
 - [ ] global settings: from `docs/_config.yaml`
@@ -22,15 +18,10 @@ Gets the logo for a URL
 
 ## provenances
 
-How we found the image. Used as key for API results map
-
-- [ ] BIMI
 - [ ] atom
 - [ ] rss
 - [ ] vectorlogozone
 - [ ] wikipedia
-- [ ] headerfavicon
-- [ ] header:* - Apple/OG/etc images specified in header
 
 ## Cache structure
 

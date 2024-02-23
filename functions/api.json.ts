@@ -1,4 +1,5 @@
 import { PagesFunction } from '@cloudflare/workers-types';
+
 import { makeJsonResponse } from '../src/makeJsonResponse';
 
 export async function onRequest(ctx: PagesFunction ) {

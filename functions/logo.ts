@@ -1,7 +1,7 @@
 import { PagesFunction } from '@cloudflare/workers-types';
 
-import { LogoContext } from '../src/LogoContext';
 import { getFirst } from '../src/getFirst';
+import { LogoContext } from '../src/LogoContext';
 import { parseRequest } from '../src/parseRequest';
 
 export async function onRequest(pageContext: PagesFunction) {
