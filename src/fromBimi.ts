@@ -47,7 +47,8 @@ async function fromBimiHost(lctx: LogoContext, host:string): Promise<LogoInfo | 
         if (cols.length < 2) {
             continue;
         }
-        if (cols[0] == 'v=BIMI1' && cols[1].startsWith('l=')){
+        if (cols[0] == 'v=BIMI1' && cols[1].startsWith('l=')) {  //LATER: search all columns
+            lctx.logger.info({ host, noindex: { results, cols }}, 'BIMI logo found');
             return {
                 provenance: 'BIMI',
                 url: cols[1].slice(2),

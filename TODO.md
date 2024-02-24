@@ -2,6 +2,9 @@
 
 Gets the logo for a URL
 
+- [ ] timeouts on all fetches
+- [ ] timeouts on DNS lookups
+- [ ] custom user-agent on fetches
 - [ ] more info from fetches: contentType, contentLength, sniffType, width/height, etc
 - [ ] change contribution: none
 - [ ] wrap `fetch()` calls: `loadUrl()`

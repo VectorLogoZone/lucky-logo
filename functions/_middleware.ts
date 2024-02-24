@@ -15,9 +15,9 @@ export async function onRequest(context: PagesFunction<Env>): Promise<Response> 
             return Response.redirect(`${requestUrl.protocol}//${desiredHost}${requestUrl.pathname}${requestUrl.search}`);
         }
     }
-    try {
+    //try {
         return await context.next();
-    } catch (err) {
-        return new Response(`${err.message}\n${err.stack}`, { status: 500 });
-    }
+    //} catch (err) {
+    //    return new Response(`${err.message}\n${err.stack}`, { status: 500 });
+    //}
 }

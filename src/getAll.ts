@@ -4,6 +4,7 @@ import { fromRoot } from './fromRoot';
 import { fromPublicSuffixRoot } from './fromPublicSuffixRoot';
 import { fromHeader } from './fromHeader';
 import { fromBimi } from './fromBimi';
+import { fromVectorLogoZone } from './fromVectorLogoZone';
 
 export async function getAll(context: LogoContext): Promise<LogoInfo[]> {
 
@@ -24,9 +25,14 @@ export async function getAll(context: LogoContext): Promise<LogoInfo[]> {
         logos.push(...headerLogos);
     }
 
-    const bimiLogo = await fromBimi(context);
-    if (bimiLogo) {
-        logos.push(bimiLogo);
+    const bimiLogos = await fromBimi(context);
+    if (bimiLogos) {
+        logos.push(...bimiLogos);
+    }
+
+    const vlzLogos = await fromVectorLogoZone(context);
+    if (vlzLogos) {
+        logos.push(...vlzLogos);
     }
 
     return logos;
