@@ -10,6 +10,16 @@ export async function getAll(context: LogoContext): Promise<LogoInfo[]> {
 
     const logos: LogoInfo[] = [];
 
+    const vlzLogos = await fromVectorLogoZone(context);
+    if (vlzLogos) {
+        logos.push(...vlzLogos);
+    }
+
+    const bimiLogos = await fromBimi(context);
+    if (bimiLogos) {
+        logos.push(...bimiLogos);
+    }
+
     let logo = await fromRoot(context);
     if (logo) {
         logos.push(logo);
@@ -23,16 +33,6 @@ export async function getAll(context: LogoContext): Promise<LogoInfo[]> {
     const headerLogos = await fromHeader(context);
     if (headerLogos) {
         logos.push(...headerLogos);
-    }
-
-    const bimiLogos = await fromBimi(context);
-    if (bimiLogos) {
-        logos.push(...bimiLogos);
-    }
-
-    const vlzLogos = await fromVectorLogoZone(context);
-    if (vlzLogos) {
-        logos.push(...vlzLogos);
     }
 
     return logos;

@@ -27,12 +27,23 @@ export async function fromHeader(lctx: LogoContext): Promise<LogoInfo[] | null> 
     }
 
     const logos: LogoInfo[] = [];
+    let response: Response|null = null;
 
-    const response = await fetch(lctx.url, {
-        headers: {
-            'User-Agent': 'LuckyLogoBot',
-        },
-    });
+    try {
+        response = await fetch(lctx.url, {
+            headers: {
+                'User-Agent': 'LuckyLogoBot',
+            },
+        });
+    } catch (err) {
+        lctx.logger.warn({ err, url: lctx.url }, `fromHeader() fetch error`);
+        return null;
+    }
+    if (response == null) {
+        lctx.logger.warn({ url: lctx.url }, `fromHeader() no response`);
+        return null;
+    }
+
     if (response.status != 200) {
         lctx.logger.warn({ status: response.status, statusText: response.statusText, url: lctx.url }, `fromHeader() HTTP error`);
         return null;

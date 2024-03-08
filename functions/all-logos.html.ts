@@ -14,7 +14,7 @@ export async function onRequest(pageContext: PagesFunction) {
     let logos: LogoInfo[] = [];
     if (lctx.errCode) {
         if (lctx.errCode != 'MISSING_URL_PARAM') {
-            alert = `Error: ${lctx.errCode}`;
+            header = `<p>Error: ${lctx.errCode}</p>`;
         }
     } else {
         header = `<h2>All logos found for for <a href="${lctx.url?.toString()}">${lctx.rawUrl}</a></h2>`
@@ -26,7 +26,7 @@ export async function onRequest(pageContext: PagesFunction) {
 
     let table = '';
     const resultRows: string[] = [];
-    if (logos.length > 0) {
+    if (logos && logos.length > 0) {
         for (let i = 0; i < logos.length; i++) {
             resultRows.push(`        <tr>
             <td>${logos[i].provenance}<br/><a href="${logos[i].url}">${logos[i].url}</a></td>

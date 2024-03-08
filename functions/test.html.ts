@@ -9,9 +9,7 @@ export async function onRequest(pageContext: PagesFunction) {
     let input = '';
     if (pageContext.request.method === 'POST') {
         const formData = await pageContext.request.formData();
-        console.log(formData);
         input = formData.get('urls');
-        console.log(input);
     } else if (pageContext.request.method === 'GET' && new URL(pageContext.request.url).searchParams.has('random')) {
       const sites = random.split('\n');
       //LATER: get count from random query parameter

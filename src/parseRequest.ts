@@ -1,6 +1,8 @@
 import { LogoContext } from './LogoContext';
 import { PagesFunction } from '@cloudflare/workers-types';
 import { logger as parentLogger } from './logger';
+import { dnsLookup } from './dnsLookup';
+import { ErrorCode } from './ErrorCode';
 
 export async function parseRequest(ctx: PagesFunction): Promise<LogoContext> {
     return parseUrl(ctx, null);
@@ -36,7 +38,7 @@ export async function parseUrl(ctx: PagesFunction, rawUrl:string|null): Promise<
     } catch (err: unknown) {
         logger.error({ err: err as Error }, 'Error parsing URL');
         return {
-            errCode: "INVALID_URL",
+            errCode: ErrorCode.INVALID_URL,
             logger,
             pageContext: ctx,
             rawUrl,
@@ -44,7 +46,18 @@ export async function parseUrl(ctx: PagesFunction, rawUrl:string|null): Promise<
         };
     }
     const hostname = url.hostname;
-    const basehost = hostname.startsWith('www.') ? hostname.substring(4) : hostname;
+    const addresses = await dnsLookup(logger, "A", hostname);
+    if (addresses.length === 0) {
+        return {
+            errCode: ErrorCode.HOST_NOT_FOUND,
+            logger,
+            pageContext: ctx,
+            rawUrl,
+            requestUrl,
+        };
+    }
+
+    const basehost = hostname.toLowerCase().startsWith('www.') ? hostname.substring(4) : hostname;
 
     return {
         basehost,

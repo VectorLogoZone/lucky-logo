@@ -8,7 +8,7 @@ export async function fromRoot(lctx: LogoContext): Promise<LogoInfo | null> {
     }
 
     const rootFaviconUrl = `${lctx.url.origin}/favicon.ico`
-    console.log(`rootFaviconUrl: ${rootFaviconUrl}`)
+    lctx.logger.info( { url: rootFaviconUrl }, 'checking for root favicon');
 
     try {
         const response = await fetch(rootFaviconUrl);
@@ -18,9 +18,9 @@ export async function fromRoot(lctx: LogoContext): Promise<LogoInfo | null> {
                 url: rootFaviconUrl,
             };
         }
-        console.log(`ERROR: no root favicon ${rootFaviconUrl}: ${response.status} ${response.statusText}`);
+        lctx.logger.info( { url: rootFaviconUrl, status: response.status, statusText: response.statusText}, 'no root favicon');
     } catch (err:unknown) {
-        console.log(`ERROR: no root favicon ${rootFaviconUrl}: ${err}`);
+        lctx.logger.info( { url: rootFaviconUrl, err }, 'root favicon fetch error');
     }
 
     return null;

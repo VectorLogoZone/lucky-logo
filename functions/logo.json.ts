@@ -3,21 +3,33 @@ import { PagesFunction } from '@cloudflare/workers-types';
 import { LogoContext } from '../src/LogoContext';
 import { getFirst } from '../src/getFirst';
 import { parseRequest } from '../src/parseRequest';
+import { getFailureImage } from '../src/getFailureImage';
+import { ErrorCode } from '../src/ErrorCode';
 
 export async function onRequest(pageContext: PagesFunction) {
 
     let lctx: LogoContext = await parseRequest(pageContext);
     if (lctx.errCode) {
-        //LATER: check for fallback parameter
-        //LATER: map specific errors to different emoji
-        return Response.redirect("https://lucky.logosear.ch/images/emoji_u1f62c.svg", 302);
+        return {
+            success: false,
+            errCode: lctx.errCode,
+            url: getFailureImage(lctx, lctx.errCode),
+        };
     }
 
     const logoInfo = await getFirst(lctx);
     if (!logoInfo) {
-        //LATER: fallback
-        return Response.redirect("https://lucky.logosear.ch/images/emoji_u1fae5.svg", 302);
+        return {
+            success: false,
+            errCode: ErrorCode.NO_LOGO_FOUND,
+            url: getFailureImage(lctx, ErrorCode.NO_LOGO_FOUND),
+        };
     }
-    
-    return Response.redirect(logoInfo.url, 302);
+
+    return {
+        success: true,
+        url: logoInfo.url
+    };
 }
+
+

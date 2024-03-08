@@ -21,13 +21,13 @@ export async function fromPublicSuffixRoot(lctx: LogoContext): Promise<LogoInfo 
     }
 
     const psFaviconUrl = `${lctx.url.protocol}//${pshostname}/favicon.ico`
-    console.log(`psFaviconUrl: ${psFaviconUrl}`)
+    lctx.logger.info( { url: psFaviconUrl }, 'checking for public suffix favicon');
     if (await isImage(lctx, psFaviconUrl))
     {
         return {
             provenance: "fromPublicSuffixRoot",
             url: psFaviconUrl,
-        };  
+        };
     }
 
     return null;

@@ -32,7 +32,7 @@ export async function fromBimi(lctx: LogoContext): Promise<LogoInfo[] | null> {
 async function fromBimiHost(lctx: LogoContext, host:string): Promise<LogoInfo | null> {
     const bimiUrl = `default._bimi.${host}`;
 
-    const results = await dnsLookup(lctx, 'TXT', bimiUrl);
+    const results = await dnsLookup(lctx.logger, 'TXT', bimiUrl);
     if (results.length === 0) {
         lctx.logger.debug({ bimiUrl }, 'fromBimi() no dns entries');
         return null;
