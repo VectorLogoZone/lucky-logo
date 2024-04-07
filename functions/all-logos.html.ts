@@ -21,6 +21,11 @@ export async function onRequest(pageContext: PagesFunction) {
         logos = await getAll(lctx);
         if (!logos || logos.length == 0) {
             header += `<p>No logos found</p>`;
+        } else {
+            logos.push({
+                url: `https://logo.clearbit.com/${lctx.basehost}`,
+                provenance: 'Clearbit',
+            })
         }
     }
 
