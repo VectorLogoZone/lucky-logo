@@ -5,6 +5,7 @@ import { fromPublicSuffixRoot } from './fromPublicSuffixRoot';
 import { fromHeader } from './fromHeader';
 import { fromBimi } from './fromBimi';
 import { fromVectorLogoZone } from './fromVectorLogoZone';
+import { fromGoogleKnowledgeGraph } from './fromGoogleKnowledgeGraph';
 
 export async function getAll(context: LogoContext): Promise<LogoInfo[]> {
 
@@ -33,6 +34,11 @@ export async function getAll(context: LogoContext): Promise<LogoInfo[]> {
     const headerLogos = await fromHeader(context);
     if (headerLogos) {
         logos.push(...headerLogos);
+    }
+
+    const gkgLogos = await fromGoogleKnowledgeGraph(context);
+    if (gkgLogos) {
+        logos.push(...gkgLogos);
     }
 
     return logos;

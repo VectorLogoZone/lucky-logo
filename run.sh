@@ -17,6 +17,9 @@ npx wrangler pages dev dist \
     --compatibility-date=2023-10-30 \
     --port=4000 \
     --env dev \
-    --binding FORCE_HOST="localhost:4000" \
+    --binding FORCE_HOST="${FORCE_HOST:-}" \
+    --binding GKG_ACCESS_TOKEN="${GKG_ACCESS_TOKEN:-}" \
+    --binding GKG_LOCATION="${GKG_LOCATION:-}" \
+    --binding GKG_PROJECT_ID="${GKG_PROJECT_ID:-}" \
     --kv=CACHE
 
