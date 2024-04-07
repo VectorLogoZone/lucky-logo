@@ -2,6 +2,8 @@
 
 Gets the logo for a URL
 
+- [ ] build queue of additional lookups: social links, news feeds, title (for kg)
+- [ ] [WikiData](https://stackoverflow.com/questions/40478860/how-to-get-social-media-links-from-google-knowledge/40762359#40762359) as source
 - [ ] timeouts on all fetches
 - [ ] timeouts on DNS lookups
 - [ ] custom user-agent on fetches

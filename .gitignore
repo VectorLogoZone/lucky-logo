@@ -1,6 +1,7 @@
 .bundle/
 dist/
 **/.DS_Store
+*.env
 .jekyll-cache/
 .jekyll-metadata
 node_modules/
