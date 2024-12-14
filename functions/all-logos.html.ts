@@ -1,4 +1,5 @@
 import { PagesFunction } from '@cloudflare/workers-types';
+import he from 'he';
 
 import { getAll } from '../src/getAll';
 import { LogoContext } from '../src/LogoContext';
@@ -34,8 +35,18 @@ export async function onRequest(pageContext: PagesFunction) {
     if (logos && logos.length > 0) {
         for (let i = 0; i < logos.length; i++) {
             resultRows.push(`        <tr>
-            <td>${logos[i].provenance}<br/><a href="${logos[i].url}">${logos[i].url}</a></td>
-            <td class="resultwrapper"><img alt="Logo via ${logos[i].provenance}" class="result" src="${logos[i].url}" /></td>
+            <td>${
+                he.encode(logos[i].provenance)
+            }<br/><a href="${he.encode(logos[i].url)}">${
+                logos[i].url
+            }</a></td>
+            <td class="resultwrapper"><a href="https://view.svg.zone/view.html?zoom=max&amp;backUrl=${encodeURIComponent(
+                pageContext.request.url
+            )}&amp;url=${encodeURIComponent(
+                logos[i].url
+            )}"><img alt="Logo via ${
+                logos[i].provenance
+            }" class="result" src="${logos[i].url}" /></a></td>
         </tr>`);
         }
         table = `<table>

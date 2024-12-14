@@ -1,4 +1,5 @@
 import { KVNamespace, PagesFunction } from '@cloudflare/workers-types';
+import he from 'he';
 
 import { render } from '../src/render';
 import random from '../docs/_data/random.txt';
@@ -34,6 +35,7 @@ export async function onRequest(pageContext: PagesFunction) {
   </fieldset>
 </form>`;
 
+    const prefix = "https://lucky.logosear.ch";
     const resultRows:string[] = [];
     if (input) {
         const urls = input.split('\n');
@@ -43,10 +45,18 @@ export async function onRequest(pageContext: PagesFunction) {
                 continue;
             }
             const linkUrl = lctx.url ? lctx.url.href : '';
+            const logoUrl = `/logo?url=${encodeURIComponent(urls[i])}`;
             resultRows.push(`    <tr>
-        <td><a href="/all-logos.html?url=${encodeURIComponent(lctx.rawUrl)}">${urls[i]}</a></td>
-        <td class="resultwrapper"><a href="/logo?url=${encodeURIComponent(urls[i])}"><img alt="Logo from Lucky Logo" class="result" src="/logo?url=${encodeURIComponent(urls[i])}" /></a></td>
-        <td class="resultwrapper"><img alt="Logo from Clearbit" class="result" src="https://logo.clearbit.com/${lctx.basehost}" /></td>
+        <td>
+            <a href="${he.encode(lctx.rawUrl)}">${
+                urls[i]
+            }</a><br/>
+            <a href="/all-logos.html?url=${encodeURIComponent(lctx.rawUrl)}">Test</a>
+        </td>
+        <td class="resultwrapper"><a href="https://view.svg.zone/view.html?zoom=max&amp;backUrl=${encodeURIComponent(pageContext.request.url)}&amp;url=${encodeURIComponent(prefix + logoUrl)}"><img alt="Logo from Lucky Logo" class="result" src="${he.encode(logoUrl)}" /></a></td>
+        <td class="resultwrapper"><img alt="Logo from Clearbit" class="result" src="https://logo.clearbit.com/${
+            encodeURIComponent(lctx.basehost || '')
+        }" /></td>
     </tr>`);
         }
     }
