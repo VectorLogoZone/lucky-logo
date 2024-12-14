@@ -1,0 +1,9 @@
+<svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+<style>
+text { font-size: 128pt; font-family: sans-serif; font-weight:bold;}
+</style>
+    <circle cx="256" cy="256" r="256" fill="#FF0000"/>
+    <text fill="#FFFFFF" x="50%" y="33%" dominant-baseline="central" text-anchor="middle">Host</text>    
+    <text fill="#FFFFFF" x="50%" y="66%" dominant-baseline="central" text-anchor="middle">Error</text>    
+
+</svg>
