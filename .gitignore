@@ -2,6 +2,7 @@
 dist/
 **/.DS_Store
 *.env
+Gemfile.lock
 .jekyll-cache/
 .jekyll-metadata
 node_modules/
