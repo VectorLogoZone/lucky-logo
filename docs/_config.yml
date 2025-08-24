@@ -3,6 +3,7 @@
 #
 
 exclude: [ "CNAME" ]
+include: [ "_headers" ]
 production_url: https://lucky.logosear.ch
 sharing_targets: [ "reddit", "pinboard" ]
 title: Lucky Logo
