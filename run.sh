@@ -16,10 +16,10 @@ npx wrangler pages dev dist \
     --compatibility-flags="nodejs_compat" \
     --compatibility-date=2023-10-30 \
     --port=4000 \
-    --env dev \
     --binding FORCE_HOST="${FORCE_HOST:-}" \
     --binding GKG_ACCESS_TOKEN="${GKG_ACCESS_TOKEN:-}" \
     --binding GKG_LOCATION="${GKG_LOCATION:-}" \
     --binding GKG_PROJECT_ID="${GKG_PROJECT_ID:-}" \
+    --binding LOGODEV_PUBLIC_KEY="${LOGODEV_PUBLIC_KEY:-}" \
     --kv=CACHE
 

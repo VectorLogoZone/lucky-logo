@@ -24,9 +24,9 @@ export async function onRequest(pageContext: PagesFunction) {
             header += `<p>No logos found</p>`;
         } else {
             logos.push({
-                url: `https://logo.clearbit.com/${lctx.basehost}`,
-                provenance: 'Clearbit',
-            })
+                url: `https://img.logo.dev/${lctx.basehost}?token=${lctx.pageContext.env.LOGODEV_PUBLIC_KEY}`,
+                provenance: "Logo.dev",
+            });
         }
     }
 

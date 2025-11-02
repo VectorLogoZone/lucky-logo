@@ -8,7 +8,7 @@
   url: "https://clearbit.com/logo"
   summary: "Freemium logo fetcher API"
   detail: |
-    Free tier is limited to 50 requests per month and requires attribution.  Paid tier is $99/month for 5000 requests.  Interesting [Show HN post](https://news.ycombinator.com/item?id=9806319) from when it was launched.  Recently purchased by [HubSpot](https://www.hubspot.com/).
+    Shutting down on 2025-12-01.  Interesting [Show HN post](https://news.ycombinator.com/item?id=9806319) from when it was launched.
 
 - name: DuckDuckGo&nbsp;favicons
   summary: Undocumented favicon fetcher suitable for embedding
@@ -37,6 +37,12 @@
   summary: Freemium favicon fetcher
   detail: |
     Free tier is limited to 100 requests per month.  Paid tier is $5/month for 1000 requests.  Interesting [blog post](https://dev.to/mtimofiiv/how-why-i-built-a-favicon-fetching-service-32nl) from the author of the service.
+
+- name: Logo.dev
+  url: "https://logo.dev/"
+  summary: Freemium logo fetcher API
+  detail: |
+    Free tier is limited to 500K requests per month.  Paid tiers start at $300/year.
 
 - name: Pirsch Faser
   summary: Self-hosted favicon fetcher

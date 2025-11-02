@@ -54,9 +54,9 @@ export async function onRequest(pageContext: PagesFunction) {
             <a href="/all-logos.html?url=${encodeURIComponent(lctx.rawUrl)}">Test</a>
         </td>
         <td class="resultwrapper"><a href="https://view.svg.zone/view.html?zoom=max&amp;backUrl=${encodeURIComponent(pageContext.request.url)}&amp;url=${encodeURIComponent(prefix + logoUrl)}"><img alt="Logo from Lucky Logo" class="result" src="${he.encode(logoUrl)}" /></a></td>
-        <td class="resultwrapper"><img alt="Logo from Clearbit" class="result" src="https://logo.clearbit.com/${
+        <td class="resultwrapper"><img alt="Logo from Logo.dev" class="result" src="https://img.logo.dev/${
             encodeURIComponent(lctx.basehost || '')
-        }" /></td>
+        }?token=${lctx.pageContext.env.LOGODEV_PUBLIC_KEY}" /></td>
     </tr>`);
         }
     }
@@ -69,10 +69,10 @@ export async function onRequest(pageContext: PagesFunction) {
   <thead>
     <th>URL</th>
     <th>Lucky Logo</th>
-    <th><a href="https://clearbit.com">Logos provided by Clearbit</a>
+    <th><a href="https://logo.dev">Logo.dev</a></th>
   </thead>
   <tbody>
-  ${resultRows.join('\n')}
+  ${resultRows.join("\n")}
   </tbody>
 </table>`;
     }
