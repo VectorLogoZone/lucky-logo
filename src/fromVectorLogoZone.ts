@@ -13,7 +13,7 @@ type VlzEntry = {
 const cache: Map<string, LogoInfo[]> = new Map();
 
 async function init() {
-    const data = await fetch('https://www.vectorlogo.zone/util/apidata.json');
+    const data = await fetch('https://www.vectorlogo.zone/api/basicdata.json');
     const entries = await data.json() as VlzEntry[];
     logger.info({ count: entries.length }, `entries from vectorlogo.zone`);
     for (const entry of entries) {

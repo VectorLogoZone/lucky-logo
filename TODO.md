@@ -9,6 +9,8 @@ Gets the logo for a URL
 - [ ] custom user-agent on fetches
 - [ ] more info from fetches: contentType, contentLength, sniffType, width/height, etc
 - [ ] change contribution: none
+- [ ] random site for single test
+- [ ] switch to Cloudflare Workers
 - [ ] wrap `fetch()` calls: `loadUrl()`
 - [ ] global settings: from `docs/_config.yaml`
 - [ ] support for `LOG_LEVEL`
