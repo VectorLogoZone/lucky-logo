@@ -1,0 +1,153 @@
+---
+import random from "../../docs/_data/random.txt";
+
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { parseUrl } from "../parseRequest";
+import { createRequestContext } from "../requestContext";
+
+Astro.response.headers.set("Cache-Control", "public");
+
+const env = Astro.locals.runtime.env;
+const pageContext = createRequestContext(Astro.request, env, Astro.params);
+
+let input = "";
+if (Astro.request.method === "POST") {
+    const formData = await Astro.request.formData();
+    const urls = formData.get("urls");
+    input = typeof urls === "string" ? urls : "";
+} else if (new URL(Astro.request.url).searchParams.has("random")) {
+    const sites = random.split("\n").filter(Boolean);
+    const randomSites = [];
+    for (let index = 0; index < 10; index += 1) {
+        randomSites.push(sites[Math.floor(Math.random() * sites.length)]);
+    }
+    input = randomSites.join("\n");
+}
+
+const prefix = new URL(Astro.request.url).origin;
+const rows = [];
+
+if (input) {
+    const urls = input.split("\n");
+    for (const candidate of urls) {
+        const trimmed = candidate.trim();
+        if (!trimmed) {
+            continue;
+        }
+
+        const lctx = await parseUrl(pageContext, trimmed);
+        if (lctx.errCode) {
+            continue;
+        }
+
+        const logoUrl = `/logo?url=${encodeURIComponent(trimmed)}`;
+        rows.push({
+            allUrl: `/all-logos.html?url=${encodeURIComponent(lctx.rawUrl)}`,
+            input: trimmed,
+            logoDevUrl:
+                lctx.basehost && env.LOGODEV_PUBLIC_KEY
+                    ? `https://img.logo.dev/${encodeURIComponent(lctx.basehost)}?token=${env.LOGODEV_PUBLIC_KEY}`
+                    : null,
+            logoUrl,
+            viewUrl: `https://view.svg.zone/view.html?zoom=max&backUrl=${encodeURIComponent(Astro.request.url)}&url=${encodeURIComponent(prefix + logoUrl)}`,
+            companyEnrichUrl: `https://api.companyenrich.com/logo/${lctx.basehost}`,
+            hunterIoUrl: `https://logos.hunter.io/${lctx.basehost}`,
+        });
+    }
+}
+---
+
+<BaseLayout title="Bulk Test">
+    <form method="POST" action="/test.html">
+        <fieldset>
+            <label>
+                Websites <span style="float:right;"
+                    ><a href="?random=10">Try 10 random URLs</a></span
+                >
+                <textarea name="urls" rows="7">{input}</textarea>
+            </label>
+            <input type="submit" value="Test" />
+        </fieldset>
+    </form>
+
+    {
+        rows.length > 0 && (
+            <Fragment>
+                <hr />
+                <h2>Results</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>URL</th>
+                            <th>Lucky Logo</th>
+                            <th>
+                                <a href="https://logo.dev">Logo.dev</a>
+                            </th>
+                            <th>
+                                <a href="https://www.hunter.io/">Hunter.io</a>
+                            </th>
+                            <th>
+                                <a href="https://www.companyenrich.com/">
+                                    CompanyEnrich
+                                </a>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {rows.map((row) => (
+                            <tr>
+                                <td>
+                                    <a href={row.input}>{row.input}</a>
+                                    <br />
+                                    <a href={row.allUrl}>Test</a>
+                                </td>
+                                <td class="resultwrapper">
+                                    <a href={row.viewUrl}>
+                                        <img
+                                            alt="Logo from Lucky Logo"
+                                            class="result"
+                                            src={row.logoUrl}
+                                        />
+                                    </a>
+                                </td>
+                                <td class="resultwrapper">
+                                    {row.logoDevUrl ? (
+                                        <img
+                                            alt="Logo from Logo.dev"
+                                            class="result"
+                                            src={row.logoDevUrl}
+                                        />
+                                    ) : (
+                                        <span>Missing LOGODEV_PUBLIC_KEY</span>
+                                    )}
+                                </td>
+                                <td class="resultwrapper">
+                                    {row.hunterIoUrl ? (
+                                        <img
+                                            alt="Logo from Hunter.io"
+                                            class="result"
+                                            src={row.hunterIoUrl}
+                                        />
+                                    ) : (
+                                        <span>Missing LOGODEV_PUBLIC_KEY</span>
+                                    )}
+                                </td>
+                                <td class="resultwrapper">
+                                    {row.companyEnrichUrl ? (
+                                        <img
+                                            alt="Logo from CompanyEnrich"
+                                            class="result"
+                                            src={row.companyEnrichUrl}
+                                        />
+                                    ) : (
+                                        <span>Missing LOGODEV_PUBLIC_KEY</span>
+                                    )}
+                                </td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+            </Fragment>
+        )
+    }
+</BaseLayout>

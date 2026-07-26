@@ -1,4 +1,4 @@
-import { LogoContext } from './LogoContext';
+import type { LogoContext } from './LogoContext';
 
 export async function isImage(lctx: LogoContext, url:string): Promise<boolean> {
     try {

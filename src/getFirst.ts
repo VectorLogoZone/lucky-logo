@@ -1,5 +1,5 @@
-import { LogoContext } from './LogoContext';
-import { LogoInfo } from './LogoInfo';
+import type { LogoContext } from './LogoContext';
+import type { LogoInfo } from './LogoInfo';
 import { fromRoot } from './fromRoot';
 import { fromPublicSuffixRoot } from './fromPublicSuffixRoot';
 import { fromHeader } from './fromHeader';

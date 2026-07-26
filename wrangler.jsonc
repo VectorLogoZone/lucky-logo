@@ -1,0 +1,17 @@
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "lucky-logo",
+  "main": "@astrojs/cloudflare/entrypoints/server",
+  "compatibility_date": "2026-07-12",
+  "compatibility_flags": ["nodejs_compat"],
+  "assets": {
+    "binding": "ASSETS",
+    "directory": "./dist"
+  },
+  "vars": {
+    "BUILD_COMMIT": "",
+    "FORCE_HOST": "",
+    "GKG_LOCATION": "global",
+    "LOGODEV_PUBLIC_KEY": ""
+  }
+}

@@ -1,14 +1,14 @@
-import { LogoContext } from './LogoContext';
-import { PagesFunction } from '@cloudflare/workers-types';
+import type { LogoContext } from './LogoContext';
 import { logger as parentLogger } from './logger';
 import { dnsLookup } from './dnsLookup';
 import { ErrorCode } from './ErrorCode';
+import type { RequestContext } from './requestContext';
 
-export async function parseRequest(ctx: PagesFunction): Promise<LogoContext> {
+export async function parseRequest(ctx: RequestContext): Promise<LogoContext> {
     return parseUrl(ctx, null);
 }
 
-export async function parseUrl(ctx: PagesFunction, rawUrl:string|null): Promise<LogoContext> {
+export async function parseUrl(ctx: RequestContext, rawUrl:string|null): Promise<LogoContext> {
 
 
     const requestUrl = new URL(ctx.request.url);

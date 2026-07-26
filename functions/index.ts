@@ -20,15 +20,13 @@ const buttonTextOptions = [
 ];
 
 const sampleWebsites = [
-    'https://logosear.ch/',
-    'https://iconsear.ch/',
-    'https://www.vectorlogo.zone/',
-    'https://www.feed.style/',
-    'https://www.fortune.ninja/',
-    'https://www.sitemap.style/',
-    'https://www.supertinyicons.org/',
-    'https://resolve.rs/',
-    'https://www.freeloader.wtf/',
+    "https://www.fortune.ninja/",
+    "https://iconsear.ch/",
+    "https://logosear.ch/",
+    "https://resolve.rs/",
+    "https://www.rss.style/",
+    "https://www.freeloader.wtf/",
+    "https://www.vectorlogo.zone/",
 ];
 
 export const onRequest: PagesFunction<Env> = async (ctx) => {
@@ -44,7 +42,7 @@ export const onRequest: PagesFunction<Env> = async (ctx) => {
 
     const content = `
 <p>Lucky Logo is a quick way to embed a website's logo without doing any work.  <a href="faq.html">More...</a></p>
-        
+
 <form method="GET" action="/">
   <fieldset>
     <label>

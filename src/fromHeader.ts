@@ -1,7 +1,7 @@
 import * as cheerio from 'cheerio';
 
-import { LogoContext } from './LogoContext';
-import { LogoInfo } from './LogoInfo';
+import type { LogoContext } from './LogoContext';
+import type { LogoInfo } from './LogoInfo';
 import { isImage } from './isImage';
 import { toAbsoluteUrl } from './toAbsoluteUrl';
 

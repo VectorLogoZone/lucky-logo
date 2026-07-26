@@ -4,11 +4,50 @@ Logo search, if you are feeling lucky!  Or just want to embed logos in another w
 
 ## Running
 
-The site is built with [Cloudflare Pages](https://developers.cloudflare.com/pages/).  You need:
-* [wrangler](https://developers.cloudflare.com/workers/wrangler/) - the Cloudflare CLI tool
-* [Jekyll](https://jekyllrb.com/) - a static site builder that handles the static assets
+The site now runs as an [Astro](https://astro.build/) app deployed to [Cloudflare Workers](https://developers.cloudflare.com/workers/).
 
-Then `./run.sh`!
+You need:
+* Node.js and npm
+* [Wrangler](https://developers.cloudflare.com/workers/wrangler/) via the project dependencies
+
+Install dependencies and start local development:
+
+```sh
+npm install
+npm run dev
+```
+
+You can also use `./run.sh`, which now delegates to `npm run dev`.
+
+## Cloudflare Configuration
+
+The Worker configuration lives in `wrangler.jsonc`.
+
+This project does not use Astro sessions or a session KV binding.
+
+For local development, create a `.dev.vars` file for bindings and secrets such as:
+
+```sh
+FORCE_HOST=
+GKG_ACCESS_TOKEN=
+GKG_LOCATION=global
+GKG_PROJECT_ID=
+LOGODEV_PUBLIC_KEY=
+BUILD_COMMIT=
+```
+
+For deployed environments, set sensitive values with Wrangler secrets:
+
+```sh
+wrangler secret put GKG_ACCESS_TOKEN
+wrangler secret put GKG_PROJECT_ID
+```
+
+Deploy with:
+
+```sh
+npm run deploy
+```
 
 ## Usage
 
@@ -39,7 +78,7 @@ To get results from the [Google Knowledge Graph](https://cloud.google.com/enterp
 [![Git](https://www.vectorlogo.zone/logos/git-scm/git-scm-ar21.svg)](https://git-scm.com/ "Version control")
 [![Github](https://www.vectorlogo.zone/logos/github/github-ar21.svg)](https://github.com/ "Code hosting")
 [![Google Knowledge Graph](https://www.vectorlogo.zone/logos/google/google-ar21.svg)](https://cloud.google.com/enterprise-knowledge-graph/docs "Knowledge Graph")
-[![Jekyll](https://www.vectorlogo.zone/logos/jekyllrb/jekyllrb-ar21.svg)](https://www.jekyllrb.com/ "Website")
+[![Astro](https://www.vectorlogo.zone/logos/astrobuild/astrobuild-ar21.svg)](https://astro.build/ "Website")
 [![NodePing](https://www.vectorlogo.zone/logos/nodeping/nodeping-ar21.svg)](https://nodeping.com?rid=201109281250J5K3P "Uptime monitoring")
 [![npm](https://www.vectorlogo.zone/logos/npmjs/npmjs-ar21.svg)](https://www.npmjs.com/ "JS Package Management")
 [![Pico CSS](https://www.vectorlogo.zone/logos/picocss/picocss-ar21.svg)](https://picocss.com/ "CSS")

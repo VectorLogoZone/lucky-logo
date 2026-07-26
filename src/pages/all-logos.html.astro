@@ -1,0 +1,92 @@
+---
+import type { LogoInfo } from "../LogoInfo";
+import { getAll } from "../getAll";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { parseRequest } from "../parseRequest";
+import { createRequestContext } from "../requestContext";
+
+Astro.response.headers.set("Cache-Control", "public");
+
+const env = Astro.locals.runtime.env;
+const pageContext = createRequestContext(Astro.request, env, Astro.params);
+const lctx = await parseRequest(pageContext);
+
+let header = "";
+const logos: LogoInfo[] = [];
+
+if (lctx.errCode) {
+    if (lctx.errCode !== "MISSING_URL_PARAM") {
+        header = `Error: ${lctx.errCode}`;
+    }
+} else {
+    header = `All logos found for ${lctx.rawUrl}`;
+    logos.push(...(await getAll(lctx)));
+    if (logos.length === 0) {
+        header = `${header} (no logos found)`;
+    } else if (lctx.basehost && env.LOGODEV_PUBLIC_KEY) {
+        logos.push({
+            url: `https://img.logo.dev/${lctx.basehost}?token=${env.LOGODEV_PUBLIC_KEY}`,
+            provenance: "Logo.dev",
+        });
+        logos.push({
+            url: `https://logos.hunter.io/${lctx.basehost}`,
+            provenance: "Hunter.io",
+        });
+        logos.push({
+            url: `https://api.companyenrich.com/logo/${lctx.basehost}`,
+            provenance: "CompanyEnrich.com",
+        });
+    }
+}
+
+const backUrl = encodeURIComponent(Astro.request.url);
+---
+
+<BaseLayout title="All Logos">
+    <form method="GET" action="/all-logos.html">
+        <fieldset>
+            <label>
+                Website
+                <input name="url" value={lctx.rawUrl} />
+            </label>
+            <input type="submit" value="Get Logos" />
+        </fieldset>
+    </form>
+
+    {header && <h2>{header}</h2>}
+
+    {
+        logos.length > 0 && (
+            <table>
+                <thead>
+                    <tr>
+                        <th>Source</th>
+                        <th>Logo</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {logos.map((logo) => (
+                        <tr>
+                            <td>
+                                {logo.provenance}
+                                <br />
+                                <a href={logo.url}>{logo.url}</a>
+                            </td>
+                            <td class="resultwrapper">
+                                <a
+                                    href={`https://view.svg.zone/view.html?zoom=max&backUrl=${backUrl}&url=${encodeURIComponent(logo.url)}`}
+                                >
+                                    <img
+                                        alt={`Logo via ${logo.provenance}`}
+                                        class="result"
+                                        src={logo.url}
+                                    />
+                                </a>
+                            </td>
+                        </tr>
+                    ))}
+                </tbody>
+            </table>
+        )
+    }
+</BaseLayout>

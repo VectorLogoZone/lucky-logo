@@ -1,4 +1,4 @@
-import { LogoContext } from './LogoContext';
+import type { LogoContext } from './LogoContext';
 
 import { ErrorCode } from './ErrorCode';
 

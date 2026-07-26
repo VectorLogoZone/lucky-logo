@@ -1,12 +1,12 @@
-import { PagesFunction } from '@cloudflare/workers-types';
+import type { RequestContext } from './requestContext';
 
-export function makeJsonResponse(ctx:PagesFunction, data:any) {
+export function makeJsonResponse(_ctx: RequestContext, data:any) {
     //LATER: cors
     //LATER: jsonp
     //LATER: apikey
-    return new Response(JSON.stringify(data), { 
-        headers: { 
-            "content-type": "application/json" 
+    return new Response(JSON.stringify(data), {
+        headers: {
+            "content-type": "application/json"
         }
     });
 }

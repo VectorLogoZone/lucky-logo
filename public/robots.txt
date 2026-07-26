@@ -1,0 +1,4 @@
+Sitemap: https://lucky.logosear.ch/sitemap.xml
+
+User-agent: *
+Disallow: /honeypot.txt

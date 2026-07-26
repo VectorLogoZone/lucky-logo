@@ -1,6 +1,14 @@
 {
-  "scripts": {},
+  "scripts": {
+    "build": "wrangler types && astro build",
+    "check": "wrangler types && astro check",
+    "dev": "wrangler types && astro dev",
+    "preview": "wrangler types && astro preview",
+    "deploy": "wrangler types && astro build && wrangler deploy"
+  },
   "dependencies": {
+    "@astrojs/cloudflare": "^12.6.7",
+    "astro": "^5.13.5",
     "cheerio": "^1.0.0-rc.12",
     "he": "^1.2.0",
     "html-entities": "^2.4.0",
@@ -13,9 +21,9 @@
     "wrangler": "^4.45.3"
   },
   "devDependencies": {
-    "@cloudflare/workers-types": "^4.20230914.0",
     "@types/luxon": "^3.3.5",
     "@types/node": "^20.11.17",
-    "@types/seedrandom": "^3.0.8"
+    "@types/seedrandom": "^3.0.8",
+    "typescript": "^5.9.2"
   }
 }

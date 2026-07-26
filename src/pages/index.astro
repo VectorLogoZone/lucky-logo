@@ -1,0 +1,64 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+Astro.response.headers.set('Cache-Control', 'public');
+
+const buttonTextOptions = [
+    'Roll the dice!',
+    'Try me!',
+    `I'm feeling lucky!`,
+    'Spin the wheel!',
+    'Please, god, let this work!',
+    'Lord have mercy!',
+    `Here's hoping...`,
+    'I believe!',
+    'Fortune favors the bold!',
+];
+
+const sampleWebsites = [
+    'https://logosear.ch/',
+    'https://iconsear.ch/',
+    'https://www.vectorlogo.zone/',
+    'https://www.feed.style/',
+    'https://www.fortune.ninja/',
+    'https://www.sitemap.style/',
+    'https://www.supertinyicons.org/',
+    'https://resolve.rs/',
+    'https://www.freeloader.wtf/',
+];
+
+const requestUrl = new URL(Astro.request.url);
+let website = requestUrl.searchParams.get('url');
+if (!website || sampleWebsites.includes(website)) {
+    website = sampleWebsites[Math.floor(Math.random() * sampleWebsites.length)];
+}
+
+const logoUrl = `/logo?url=${encodeURIComponent(website)}`;
+const allUrl = `/all-logos.html?url=${encodeURIComponent(website)}`;
+const buttonText = buttonTextOptions[Math.floor(Math.random() * buttonTextOptions.length)];
+const origin = requestUrl.origin;
+---
+
+<BaseLayout h1="Lucky Logo" title="Lucky Logo: when you are feeling lucky in your logo search!">
+    <p>Lucky Logo is a quick way to embed a website's logo without doing any work. <a href="/faq">More...</a></p>
+
+    <form method="GET" action="/">
+        <fieldset>
+            <label>
+                Website
+                <input value={website} name="url" />
+            </label>
+            <input type="submit" value={buttonText} />
+        </fieldset>
+
+        <label>
+            URL to use in your img tag:
+            <input value={`${origin}${logoUrl}`} id="logourl" />
+        </label>
+        <div class="centered">
+            <div class="resultwrapper">
+                <a href={allUrl}><img class="result" src={logoUrl} alt="Logo result" /></a>
+            </div>
+        </div>
+    </form>
+</BaseLayout>

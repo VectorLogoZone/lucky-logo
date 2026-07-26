@@ -1,12 +1,11 @@
-import { PagesFunction } from '@cloudflare/workers-types';
-
 import { getFirst } from '../src/getFirst';
-import { LogoContext } from '../src/LogoContext';
-import { LogoInfo } from '../src/LogoInfo';
+import type { LogoContext } from '../src/LogoContext';
+import type { LogoInfo } from '../src/LogoInfo';
 import { parseRequest } from '../src/parseRequest';
 import { makeJsonResponse } from '../src/makeJsonResponse';
+import type { RequestContext } from './requestContext';
 
-export async function onRequest(pageContext: PagesFunction) {
+export async function onRequest(pageContext: RequestContext) {
 
     let lctx: LogoContext = await parseRequest(pageContext);
     let logo: LogoInfo|null = null;
