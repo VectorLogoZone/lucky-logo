@@ -1,11 +1,4 @@
 {
-  "scripts": {
-    "build": "wrangler types && astro build",
-    "check": "wrangler types && astro check",
-    "dev": "wrangler types && astro dev",
-    "preview": "wrangler types && astro preview",
-    "deploy": "wrangler types && astro build && wrangler deploy"
-  },
   "dependencies": {
     "@astrojs/cloudflare": "^14.1.4",
     "astro": "^7.1.3",
@@ -25,5 +18,15 @@
     "@types/seedrandom": "^3.0.8",
     "typescript": "^7.0.2",
     "wrangler": "^4.114.0"
+  },
+  "engine": {
+    "node": ">=22.0.0"
+  },
+  "scripts": {
+    "build": "wrangler types && astro build",
+    "check": "wrangler types && astro check",
+    "dev": "wrangler types && astro dev",
+    "preview": "wrangler types && astro preview",
+    "deploy": "wrangler types && astro build && wrangler deploy"
   }
 }
