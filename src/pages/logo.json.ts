@@ -1,12 +1,12 @@
 import type { APIRoute } from 'astro';
+import { env } from 'cloudflare:workers';
 
 import { getFirst } from '../getFirst';
 import { makeJsonResponse } from '../makeJsonResponse';
 import { parseRequest } from '../parseRequest';
 import { createRequestContext } from '../requestContext';
 
-export const GET: APIRoute = async ({ locals, params, request }) => {
-    const env = locals.runtime.env;
+export const GET: APIRoute = async ({ params, request }) => {
     const pageContext = createRequestContext(request, env, params);
     const lctx = await parseRequest(pageContext);
     let logo = null;

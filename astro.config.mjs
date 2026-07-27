@@ -12,7 +12,4 @@ export default defineConfig({
   server: {
     port: 4000,
   },
-  session: {
-    driver: './src/no-session-driver.ts',
-  },
 });

@@ -4,10 +4,10 @@ import { getAll } from "../getAll";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { parseRequest } from "../parseRequest";
 import { createRequestContext } from "../requestContext";
+import { env } from "cloudflare:workers";
 
 Astro.response.headers.set("Cache-Control", "public");
 
-const env = Astro.locals.runtime.env;
 const pageContext = createRequestContext(Astro.request, env, Astro.params);
 const lctx = await parseRequest(pageContext);
 

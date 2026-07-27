@@ -1,7 +1,7 @@
 import type { APIRoute } from 'astro';
+import { env } from 'cloudflare:workers';
 
-export const GET: APIRoute = async ({ locals }) => {
-    const env = locals.runtime.env;
+export const GET: APIRoute = async () => {
     const commit = env.BUILD_COMMIT ? env.BUILD_COMMIT.slice(0, 7) : null;
     return new Response(JSON.stringify({
         success: true,

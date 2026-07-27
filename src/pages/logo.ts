@@ -1,4 +1,5 @@
 import type { APIRoute } from 'astro';
+import { env } from 'cloudflare:workers';
 
 import { ErrorCode } from '../ErrorCode';
 import { getFailureImage } from '../getFailureImage';
@@ -6,8 +7,7 @@ import { getFirst } from '../getFirst';
 import { parseRequest } from '../parseRequest';
 import { createRequestContext } from '../requestContext';
 
-export const GET: APIRoute = async ({ locals, params, request }) => {
-    const env = locals.runtime.env;
+export const GET: APIRoute = async ({ params, request }) => {
     const pageContext = createRequestContext(request, env, params);
     const lctx = await parseRequest(pageContext);
     if (lctx.errCode) {
