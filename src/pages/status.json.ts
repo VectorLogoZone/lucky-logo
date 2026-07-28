@@ -1,7 +1,8 @@
-import type { APIRoute } from 'astro';
 import { handleJson } from 'src/lib/handleJson';
+import type { AstroContext } from '../types/AstroContext';
+import type { APIRoute } from 'astro';
 
-export const GET: APIRoute = async (context) => {
+export const GET: APIRoute = async (context:AstroContext) => {
     return handleJson(context, {
         success: true,
         message: 'OK',
