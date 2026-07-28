@@ -11,6 +11,8 @@ export const GET: APIRoute = async (context) => {
         tech: context.generator,
     }, null, 2), {
         headers: {
+            'Access-Control-Allow-Origin': '*',
+            'Access-Control-Allow-Methods': 'GET, HEAD, OPTIONS',
             'Cache-Control': 'no-store',
             'Content-Type': 'application/json',
         },
