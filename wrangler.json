@@ -7,9 +7,16 @@
   "main": "@astrojs/cloudflare/entrypoints/server",
   "name": "lucky-logo",
   "preview_urls": false,
+  "secrets": {
+    "required": [
+      "GKG_ACCESS_TOKEN",
+      "GKG_PROJECT_ID"
+    ]
+  },
   "vars": {
     "COMMIT": "(local)",
     "GKG_LOCATION": "global",
-    "LASTMOD": "(local)"
+    "LASTMOD": "(local)",
+    "LOGODEV_PUBLIC_KEY": "pk_GqFUKabMQL2E3XAjEDd6Jw"
   }
 }
