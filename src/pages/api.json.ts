@@ -1,13 +1,11 @@
 import type { APIRoute } from 'astro';
 import { env } from 'cloudflare:workers';
 
-import { makeJsonResponse } from '../makeJsonResponse';
-import { createRequestContext } from '../requestContext';
+import { handleJson } from "../lib/handleJson";
 
-export const GET: APIRoute = async ({ params, request }) => {
-    const pageContext = createRequestContext(request, env, params);
-    return makeJsonResponse(pageContext, {
+export const GET: APIRoute = async (context) => {
+    return handleJson(context, {
         success: false,
-        message: 'Not implemented',
+        message: "Not implemented",
     });
 };

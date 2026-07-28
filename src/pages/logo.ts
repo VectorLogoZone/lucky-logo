@@ -1,15 +1,13 @@
 import type { APIRoute } from 'astro';
 import { env } from 'cloudflare:workers';
 
-import { ErrorCode } from '../ErrorCode';
-import { getFailureImage } from '../getFailureImage';
-import { getFirst } from '../getFirst';
-import { parseRequest } from '../parseRequest';
-import { createRequestContext } from '../requestContext';
+import { ErrorCode } from '../types/ErrorCode';
+import { getFailureImage } from '../lib/getFailureImage';
+import { getFirst } from '../lib/getFirst';
+import { parseRequest } from '../lib/parseRequest';
 
-export const GET: APIRoute = async ({ params, request }) => {
-    const pageContext = createRequestContext(request, env, params);
-    const lctx = await parseRequest(pageContext);
+export const GET: APIRoute = async (context) => {
+    const lctx = await parseRequest(context);
     if (lctx.errCode) {
         return Response.redirect(getFailureImage(lctx, lctx.errCode), 302);
     }

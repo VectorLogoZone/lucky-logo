@@ -8,10 +8,8 @@
   "name": "lucky-logo",
   "preview_urls": false,
   "vars": {
-    "COMMIT": "",
-    "FORCE_HOST": "",
+    "COMMIT": "(local)",
     "GKG_LOCATION": "global",
-    "LASTMOD": "",
-    "LOGODEV_PUBLIC_KEY": ""
+    "LASTMOD": "(local)"
   }
 }

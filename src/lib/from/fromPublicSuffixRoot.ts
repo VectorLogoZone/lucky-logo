@@ -1,8 +1,8 @@
 import * as psl from 'psl';
 
-import type { LogoContext } from './LogoContext';
-import type { LogoInfo } from './LogoInfo';
-import { isImage } from './isImage';
+import type { LogoContext } from '../../types/LogoContext';
+import type { LogoInfo } from '../../types/LogoInfo';
+import { isImage } from '../isImage';
 
 export async function fromPublicSuffixRoot(lctx: LogoContext): Promise<LogoInfo | null> {
 

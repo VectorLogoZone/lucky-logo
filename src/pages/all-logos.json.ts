@@ -1,17 +1,15 @@
 import type { APIRoute } from 'astro';
 import { env } from 'cloudflare:workers';
 
-import { getAll } from '../getAll';
-import { makeJsonResponse } from '../makeJsonResponse';
-import { parseRequest } from '../parseRequest';
-import { createRequestContext } from '../requestContext';
+import { getAll } from '../lib/getAll';
+import { handleJson } from '../lib/handleJson';
+import { parseRequest } from '../lib/parseRequest';
 
-export const GET: APIRoute = async ({ params, request }) => {
-    const pageContext = createRequestContext(request, env, params);
-    const lctx = await parseRequest(pageContext);
+export const GET: APIRoute = async (context) => {
+    const lctx = await parseRequest(context);
     const logos = lctx.errCode ? [] : await getAll(lctx);
 
-    return makeJsonResponse(pageContext, {
+    return handleJson(context, {
         success: !lctx.errCode,
         message: lctx.errCode ? lctx.errCode : '',
         logos,

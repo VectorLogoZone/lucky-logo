@@ -17,6 +17,13 @@ if [ ! -d "node_modules" ]; then
     npm install
 fi
 
+export LASTMOD=$(date -u +%Y-%m-%dT%H:%M:%SZ)
+if [[ $(git status --short) != '' ]]; then
+  export COMMIT="$(git rev-parse --short HEAD) (dirty)"
+else
+  export COMMIT="$(git rev-parse --short HEAD)"
+fi
+
 echo "INFO: Starting development server..."
 npm run dev
 

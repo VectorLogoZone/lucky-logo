@@ -1,7 +1,7 @@
-import type { LogoContext } from './LogoContext';
-import type { LogoInfo } from './LogoInfo';
+import type { LogoContext } from '../../types/LogoContext';
+import type { LogoInfo } from '../../types/LogoInfo';
 
-import { logger } from './logger';
+import { logger } from '../logger';
 
 type VlzEntry = {
     icon: boolean,

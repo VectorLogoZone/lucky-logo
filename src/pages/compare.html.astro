@@ -2,13 +2,9 @@
 import random from "../data/random.txt";
 
 import BaseLayout from "../layouts/BaseLayout.astro";
-import { parseUrl } from "../parseRequest";
-import { createRequestContext } from "../requestContext";
-import { env } from "cloudflare:workers";
+import { parseUrl } from "../lib/parseRequest";
 
 Astro.response.headers.set("Cache-Control", "public");
-
-const pageContext = createRequestContext(Astro.request, env, Astro.params);
 
 let input = "";
 if (Astro.request.method === "POST") {
@@ -35,18 +31,18 @@ if (input) {
             continue;
         }
 
-        const lctx = await parseUrl(pageContext, trimmed);
+        const lctx = await parseUrl(Astro, trimmed);
         if (lctx.errCode) {
             continue;
         }
 
         const logoUrl = `/logo?url=${encodeURIComponent(trimmed)}`;
         rows.push({
-            allUrl: `/all-logos.html?url=${encodeURIComponent(lctx.rawUrl)}`,
+            allUrl: `/analyze.html?url=${encodeURIComponent(lctx.rawUrl)}`,
             input: trimmed,
             logoDevUrl:
-                lctx.basehost && env.LOGODEV_PUBLIC_KEY
-                    ? `https://img.logo.dev/${encodeURIComponent(lctx.basehost)}?token=${env.LOGODEV_PUBLIC_KEY}`
+                lctx.basehost && process.env.LOGODEV_PUBLIC_KEY
+                    ? `https://img.logo.dev/${encodeURIComponent(lctx.basehost)}?token=${process.env.LOGODEV_PUBLIC_KEY}`
                     : null,
             logoUrl,
             viewUrl: `https://view.svg.zone/view.html?zoom=max&backUrl=${encodeURIComponent(Astro.request.url)}&url=${encodeURIComponent(prefix + logoUrl)}`,
@@ -59,7 +55,7 @@ if (input) {
 ---
 
 <BaseLayout title="Bulk Test">
-    <form method="POST" action="/test.html">
+    <form method="POST" action="/compare.html">
         <fieldset>
             <label>
                 Websites <span style="float:right;"

@@ -33,7 +33,7 @@ if (!website || sampleWebsites.includes(website)) {
 }
 
 const logoUrl = `/logo?url=${encodeURIComponent(website)}`;
-const allUrl = `/all-logos.html?url=${encodeURIComponent(website)}`;
+const allUrl = `/analyze.html?url=${encodeURIComponent(website)}`;
 const buttonText =
     buttonTextOptions[Math.floor(Math.random() * buttonTextOptions.length)];
 const origin = requestUrl.origin;

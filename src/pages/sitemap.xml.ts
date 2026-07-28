@@ -3,8 +3,10 @@ import { DateTime } from 'luxon';
 
 const pages = [
     '/',
-    '/alternatives',
-    '/faq',
+    '/alternatives.html',
+    '/faq.html',
+    '/analyze.html',
+    '/compare.html',
 ];
 
 export const GET: APIRoute = async () => {

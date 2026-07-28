@@ -1,11 +1,11 @@
-import type { LogoContext } from './LogoContext';
-import type { LogoInfo } from './LogoInfo';
-import { fromRoot } from './fromRoot';
-import { fromPublicSuffixRoot } from './fromPublicSuffixRoot';
-import { fromHeader } from './fromHeader';
-import { fromBimi } from './fromBimi';
-import { fromVectorLogoZone } from './fromVectorLogoZone';
-import { fromGoogleKnowledgeGraph } from './fromGoogleKnowledgeGraph';
+import type { LogoContext } from '../types/LogoContext';
+import type { LogoInfo } from '../types/LogoInfo';
+import { fromRoot } from './from/fromRoot';
+import { fromPublicSuffixRoot } from './from/fromPublicSuffixRoot';
+import { fromHeader } from './from/fromHeader';
+import { fromBimi } from './from/fromBimi';
+import { fromVectorLogoZone } from './from/fromVectorLogoZone';
+import { fromGoogleKnowledgeGraph } from './from/fromGoogleKnowledgeGraph';
 
 export async function getAll(context: LogoContext): Promise<LogoInfo[]> {
 

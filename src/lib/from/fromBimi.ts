@@ -1,8 +1,8 @@
 import * as psl from 'psl';
 
-import type { LogoContext } from './LogoContext';
-import type { LogoInfo } from './LogoInfo';
-import { dnsLookup } from './dnsLookup';
+import type { LogoContext } from '../../types/LogoContext';
+import type { LogoInfo } from '../../types/LogoInfo';
+import { dnsLookup } from '../dnsLookup';
 
 export async function fromBimi(lctx: LogoContext): Promise<LogoInfo[] | null> {
 

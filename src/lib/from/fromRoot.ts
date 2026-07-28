@@ -1,5 +1,5 @@
-import type { LogoContext } from './LogoContext';
-import type { LogoInfo } from './LogoInfo';
+import type { LogoContext } from '../../types/LogoContext';
+import type { LogoInfo } from '../../types/LogoInfo';
 
 export async function fromRoot(lctx: LogoContext): Promise<LogoInfo | null> {
 

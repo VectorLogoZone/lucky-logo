@@ -1,15 +1,14 @@
 ---
-import type { LogoInfo } from "../LogoInfo";
-import { getAll } from "../getAll";
+import type { LogoInfo } from "../types/LogoInfo";
+import { getAll } from "../lib/getAll";
 import BaseLayout from "../layouts/BaseLayout.astro";
-import { parseRequest } from "../parseRequest";
-import { createRequestContext } from "../requestContext";
-import { env } from "cloudflare:workers";
+import { parseRequest } from "../lib/parseRequest";
+import { getErrorImage, getFailureImage } from "src/lib/getFailureImage";
+import { ErrorCode } from "src/types/ErrorCode";
 
 Astro.response.headers.set("Cache-Control", "public");
 
-const pageContext = createRequestContext(Astro.request, env, Astro.params);
-const lctx = await parseRequest(pageContext);
+const lctx = await parseRequest(Astro);
 
 let header = "";
 const logos: LogoInfo[] = [];
@@ -22,32 +21,36 @@ if (lctx.errCode) {
     header = `All logos found for ${lctx.rawUrl}`;
     logos.push(...(await getAll(lctx)));
     if (logos.length === 0) {
-        header = `${header} (no logos found)`;
-    } else if (lctx.basehost && env.LOGODEV_PUBLIC_KEY) {
         logos.push({
-            url: `https://img.logo.dev/${lctx.basehost}?token=${env.LOGODEV_PUBLIC_KEY}`,
+            url: getErrorImage(ErrorCode.NO_LOGO_FOUND),
+            provenance: "Unlucky: no logos found",
+        })
+    }
+    if (lctx.basehost && process.env.LOGODEV_PUBLIC_KEY) {
+        logos.push({
+            url: `https://img.logo.dev/${lctx.basehost}?token=${process.env.LOGODEV_PUBLIC_KEY}`,
             provenance: "Logo.dev",
         });
-        logos.push({
-            url: `https://logos.hunter.io/${lctx.basehost}`,
-            provenance: "Hunter.io",
-        });
-        logos.push({
-            url: `https://api.companyenrich.com/logo/${lctx.basehost}`,
-            provenance: "CompanyEnrich.com",
-        });
-        logos.push({
-            url: `https://logo.uplead.com/${lctx.basehost}`,
-            provenance: "Uplead.com",
-        });
     }
+    logos.push({
+        url: `https://logos.hunter.io/${lctx.basehost}`,
+        provenance: "Hunter.io",
+    });
+    logos.push({
+        url: `https://api.companyenrich.com/logo/${lctx.basehost}`,
+        provenance: "CompanyEnrich.com",
+    });
+    logos.push({
+        url: `https://logo.uplead.com/${lctx.basehost}`,
+        provenance: "Uplead.com",
+    });
 }
 
 const backUrl = encodeURIComponent(Astro.request.url);
 ---
 
 <BaseLayout title="All Logos">
-    <form method="GET" action="/all-logos.html">
+    <form method="GET" action="/analyze.html">
         <fieldset>
             <label>
                 Website

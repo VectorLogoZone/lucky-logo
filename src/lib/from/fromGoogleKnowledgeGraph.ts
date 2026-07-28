@@ -1,7 +1,7 @@
 import * as psl from 'psl';
 
-import type { LogoContext } from './LogoContext';
-import type { LogoInfo } from './LogoInfo';
+import type { LogoContext } from '../../types/LogoContext';
+import type { LogoInfo } from '../../types/LogoInfo';
 
 export async function fromGoogleKnowledgeGraph(lctx: LogoContext): Promise<LogoInfo[] | null> {
 
@@ -9,9 +9,9 @@ export async function fromGoogleKnowledgeGraph(lctx: LogoContext): Promise<LogoI
         return null;
     }
 
-    const accessToken = lctx.pageContext.env.GKG_ACCESS_TOKEN;
-    const projectId = lctx.pageContext.env.GKG_PROJECT_ID;
-    const location = lctx.pageContext.env.GKG_LOCATION;
+    const accessToken = process.env.GKG_ACCESS_TOKEN;
+    const projectId = process.env.GKG_PROJECT_ID;
+    const location = process.env.GKG_LOCATION;
     if (!accessToken || !projectId || !location) {
         lctx.logger.warn({ projectId, location }, `fromGoogleKnowledgeGraph() missing env vars`);
         return null;

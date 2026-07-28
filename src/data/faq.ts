@@ -15,7 +15,7 @@ export const faqs = [
         slug: 'free',
     },
     {
-        answerHtml: '<p>I am sorry you feel that way. If you do not like it, please try one of the <a href="/alternatives">alternatives</a>.</p>',
+        answerHtml: '<p>I am sorry you feel that way. If you do not like it, please try one of the <a href="/alternatives.html">alternatives</a>.</p>',
         question: 'This sucks!',
         slug: 'sucks',
     },
@@ -25,12 +25,12 @@ export const faqs = [
         slug: 'greatbut',
     },
     {
-        answerHtml: '<p>In theory, it should work on any website. In practice: try the <a href="/test.html">bulk testing tool</a> and see how it does on your actual data.</p>',
+        answerHtml: '<p>In theory, it should work on any website. In practice: try the <a href="/compare.html">comparison tool</a> and see how it does on your actual data.</p>',
         question: 'What websites does it have logos for?',
         slug: 'coverage',
     },
     {
-        answerHtml: '<p>It uses a few different methods to find logos.</p><ul><li><code>favicon.ico</code> in the root of the website</li><li><code>favicon.ico</code> in the root of the public suffix hostname</li><li>Various metadata in the HTML at the URL</li></ul><p>You can see all the logos it finds for a given URL on the <a href="/all-logos.html">All Logos</a> page.</p>',
+        answerHtml: '<p>It uses a few different methods to find logos.</p><ul><li><code>favicon.ico</code> in the root of the website</li><li><code>favicon.ico</code> in the root of the public suffix hostname</li><li>Various metadata in the HTML at the URL</li></ul><p>You can see all the logos it finds for a given URL on the <a href="/analyze.html">Analyze</a> page.</p>',
         question: 'How does it find the logos?',
         slug: 'algorithms',
     },

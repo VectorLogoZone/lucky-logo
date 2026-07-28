@@ -1,9 +1,9 @@
 import * as cheerio from 'cheerio';
 
-import type { LogoContext } from './LogoContext';
-import type { LogoInfo } from './LogoInfo';
-import { isImage } from './isImage';
-import { toAbsoluteUrl } from './toAbsoluteUrl';
+import type { LogoContext } from '../../types/LogoContext';
+import type { LogoInfo } from '../../types/LogoInfo';
+import { isImage } from '../isImage';
+import { toAbsoluteUrl } from '../toAbsoluteUrl';
 
 type ThingToTry = {
     selector: string,

@@ -9,96 +9,125 @@ const { h1, noindex = false, title } = Astro.props;
 const pageTitle = h1 ? title : `${title} - Lucky Logo`;
 ---
 
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="utf-8" />
-    <title>{pageTitle}</title>
-    <meta name="referrer" content="unsafe-url" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    {noindex && <meta name="robots" content="noindex" />}
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="/css/pico.min.css" />
-    <style is:global>
-        :root {
-            --pico-font-family: "DM Sans", sans-serif;
-            --pico-font-weight: 400;
-        }
-        .footer {
-            text-align: center;
-        }
-        .footer-icon {
-            margin-right: 0.25em;
-            vertical-align: middle;
-            height: 1.25em;
-            break-after: avoid;
-        }
-        .footer-link {
-            margin-left: 0.25em;
-            margin-right: 0.25em;
-            white-space: nowrap;
-        }
-        .centered {
-            width: 100%;
-            text-align: center;
-            justify-content: center;
-            display: flex;
-        }
-        .resultwrapper {
-            height: 4cm;
-            width: 4cm;
-            padding: 0.25cm;
-            background: url("/images/memphis-mini.png") repeat top left;
-        }
-        img.result {
-            object-fit: contain;
-            max-width: 100%;
-            max-height: 100%;
-            width: auto;
-            height: 100%;
-        }
-        .withBackground {
-            background: url("/images/memphis-mini.png") repeat top left;
-        }
-        @media (min-width: 1536px) {
-            .container {
-                max-width: 1200px;
+    <head>
+        <meta charset="utf-8" />
+        <title>{pageTitle}</title>
+        <meta name="referrer" content="unsafe-url" />
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1, shrink-to-fit=no"
+        />
+        {noindex && <meta name="robots" content="noindex" />}
+        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap"
+            rel="stylesheet"
+        />
+        <link rel="stylesheet" href="/css/pico.min.css" />
+        <style is:global>
+            :root {
+                --pico-font-family: "DM Sans", sans-serif;
+                --pico-font-weight: 400;
             }
-        }
-    </style>
-</head>
-<body>
-    <main class="container">
-        <nav>
-            <ul>
-                <li><a href="/"><img alt="logo" src="/favicon.svg" style="height:1.5em;vertical-align:middle;margin-right:0.3em;" /><strong>Lucky Logo</strong></a></li>
-            </ul>
-            <ul>
-                <li><a href="/" class="secondary">Home</a></li>
-                <li><a href="/faq" class="secondary">FAQ</a></li>
-                <li>
-                    <details class="dropdown">
-                        <summary>Test</summary>
-                        <ul dir="rtl">
-                            <li><a href="/test.html">Bulk</a></li>
-                            <li><a href="/all-logos.html">Single</a></li>
-                        </ul>
-                    </details>
-                </li>
-            </ul>
-        </nav>
-        <h1>{h1 ?? title}</h1>
-        <hr />
-        <slot />
-        <hr />
-        <p class="footer"><small>
-            <a class="footer-link" href="https://logosear.ch/"><img alt="" class="footer-icon" src="https://www.vectorlogo.zone/logos/logosearch/logosearch-icon.svg" />Logo Search</a>
-            | <a class="footer-link" href="https://github.com/VectorLogoZone/lucky-logo"><img alt="" class="footer-icon" src="https://www.vectorlogo.zone/logos/github/github-tile.svg" />Source</a>
-            | <a class="footer-link" href="https://www.vectorlogo.zone/"><img alt="" class="footer-icon" src="https://www.vectorlogo.zone/logos/vectorlogozone/vectorlogozone-tile.svg" />VectorLogoZone</a>
-        </small></p>
-    </main>
-</body>
+            .footer {
+                text-align: center;
+            }
+            .footer-icon {
+                margin-right: 0.25em;
+                vertical-align: middle;
+                height: 1.25em;
+                break-after: avoid;
+            }
+            .footer-link {
+                margin-left: 0.25em;
+                margin-right: 0.25em;
+                white-space: nowrap;
+            }
+            .centered {
+                width: 100%;
+                text-align: center;
+                justify-content: center;
+                display: flex;
+            }
+            .resultwrapper {
+                height: 4cm;
+                width: 4cm;
+                padding: 0.25cm;
+                background: url("/images/memphis-mini.png") repeat top left;
+            }
+            img.result {
+                object-fit: contain;
+                max-width: 100%;
+                max-height: 100%;
+                width: auto;
+                height: 100%;
+            }
+            .withBackground {
+                background: url("/images/memphis-mini.png") repeat top left;
+            }
+            @media (min-width: 1536px) {
+                .container {
+                    max-width: 1200px;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <main class="container">
+            <nav>
+                <ul>
+                    <li>
+                        <a href="/"
+                            ><img
+                                alt="logo"
+                                src="/favicon.svg"
+                                style="height:1.5em;vertical-align:middle;margin-right:0.3em;"
+                            /><strong>Lucky Logo</strong></a
+                        >
+                    </li>
+                </ul>
+                <ul>
+                    <li><a href="/" class="secondary">Home</a></li>
+                    <li><a href="/faq.html" class="secondary">FAQ</a></li>
+                    <li><a href="/analyze.html" class="secondary">Analyze</a></li>
+                    <li><a href="/compare.html" class="secondary">Compare</a></li>
+                </ul>
+            </nav>
+            <h1>{h1 ?? title}</h1>
+            <hr />
+            <slot />
+            <hr />
+            <p class="footer">
+                <small>
+                    <a class="footer-link" href="https://logosear.ch/"
+                        ><img
+                            alt=""
+                            class="footer-icon"
+                            src="https://www.vectorlogo.zone/logos/logosearch/logosearch-icon.svg"
+                        />Logo Search</a
+                    >
+                    | <a
+                        class="footer-link"
+                        href="https://github.com/VectorLogoZone/lucky-logo"
+                        ><img
+                            alt=""
+                            class="footer-icon"
+                            src="https://www.vectorlogo.zone/logos/github/github-tile.svg"
+                        />Source</a
+                    >
+                    | <a class="footer-link" href="https://www.vectorlogo.zone/"
+                        ><img
+                            alt=""
+                            class="footer-icon"
+                            src="https://www.vectorlogo.zone/logos/vectorlogozone/vectorlogozone-tile.svg"
+                        />VectorLogoZone</a
+                    >
+                </small>
+            </p>
+        </main>
+    </body>
 </html>

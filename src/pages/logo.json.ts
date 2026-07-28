@@ -1,23 +1,21 @@
 import type { APIRoute } from 'astro';
 import { env } from 'cloudflare:workers';
 
-import { getFirst } from '../getFirst';
-import { makeJsonResponse } from '../makeJsonResponse';
-import { parseRequest } from '../parseRequest';
-import { createRequestContext } from '../requestContext';
+import { getFirst } from '../lib/getFirst';
+import { handleJson } from "../lib/handleJson";
+import { parseRequest } from '../lib/parseRequest';
 
-export const GET: APIRoute = async ({ params, request }) => {
-    const pageContext = createRequestContext(request, env, params);
-    const lctx = await parseRequest(pageContext);
+export const GET: APIRoute = async (context) => {
+    const lctx = await parseRequest(context);
     let logo = null;
 
     if (!lctx.errCode) {
         logo = await getFirst(lctx);
     }
 
-    return makeJsonResponse(pageContext, {
+    return handleJson(context, {
         success: !lctx.errCode,
-        message: lctx.errCode ? lctx.errCode : '',
+        message: lctx.errCode ? lctx.errCode : "",
         logo: logo ?? undefined,
     });
 };

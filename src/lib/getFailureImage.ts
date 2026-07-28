@@ -1,6 +1,6 @@
-import type { LogoContext } from './LogoContext';
+import type { LogoContext } from '../types/LogoContext';
 
-import { ErrorCode } from './ErrorCode';
+import { ErrorCode } from '../types/ErrorCode';
 
 const imageMap = {
     [ErrorCode.NO_LOGO_FOUND]: "/images/emoji_u1f92a.svg",
@@ -9,6 +9,15 @@ const imageMap = {
     [ErrorCode.UNKNOWN]: "/images/errors/unknown_error.svg",
     [ErrorCode.HOST_NOT_FOUND]: "/images/errors/host_error.svg",
 };
+
+export function getErrorImage(errorCode: ErrorCode): string {
+    const prefix = "https://lucky.logosear.ch";
+
+    if (errorCode in imageMap) {
+        return `${prefix}${imageMap[errorCode]}`;
+    }
+    return `${prefix}${imageMap[ErrorCode.UNKNOWN]}`;
+}
 
 export function getFailureImage(context: LogoContext, errorCode: ErrorCode): string {
     const prefix = "https://lucky.logosear.ch";

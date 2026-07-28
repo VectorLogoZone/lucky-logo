@@ -1,10 +1,10 @@
-import type { LogoContext } from './LogoContext';
-import type { LogoInfo } from './LogoInfo';
-import { fromRoot } from './fromRoot';
-import { fromPublicSuffixRoot } from './fromPublicSuffixRoot';
-import { fromHeader } from './fromHeader';
-import { fromVectorLogoZone } from './fromVectorLogoZone';
-import { fromBimi } from './fromBimi';
+import type { LogoContext } from '../types/LogoContext';
+import type { LogoInfo } from '../types/LogoInfo';
+import { fromRoot } from './from/fromRoot';
+import { fromPublicSuffixRoot } from './from/fromPublicSuffixRoot';
+import { fromHeader } from './from/fromHeader';
+import { fromVectorLogoZone } from './from/fromVectorLogoZone';
+import { fromBimi } from './from/fromBimi';
 
 export async function getFirst(context: LogoContext): Promise<LogoInfo | null> {
 

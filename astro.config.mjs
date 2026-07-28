@@ -1,15 +1,19 @@
-import { defineConfig } from 'astro/config';
-import cloudflare from '@astrojs/cloudflare';
+import { defineConfig } from "astro/config";
+import cloudflare from "@astrojs/cloudflare";
 
 export default defineConfig({
-  adapter: cloudflare({
-    imageService: 'compile',
-    platformProxy: {
-      enabled: true,
+    adapter: cloudflare({
+        imageService: "compile",
+        platformProxy: {
+            enabled: true,
+        },
+    }),
+    output: "server",
+    redirects: {
+        "/all-logos.html": "/analyze.html",
+        "/test.html": "/compare.html",
     },
-  }),
-  output: 'server',
-  server: {
-    port: 4000,
-  },
+    server: {
+        port: 4000,
+    },
 });

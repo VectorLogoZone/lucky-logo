@@ -1,42 +1,43 @@
-import type { LogoContext } from './LogoContext';
+import type { LogoContext } from '../types/LogoContext';
 import { logger as parentLogger } from './logger';
 import { dnsLookup } from './dnsLookup';
-import { ErrorCode } from './ErrorCode';
-import type { RequestContext } from './requestContext';
+import { ErrorCode } from '../types/ErrorCode';
+import type { AstroContext } from 'src/types/AstroContext';
 
-export async function parseRequest(ctx: RequestContext): Promise<LogoContext> {
+export async function parseRequest(ctx: AstroContext): Promise<LogoContext> {
     return parseUrl(ctx, null);
 }
 
-export async function parseUrl(ctx: RequestContext, rawUrl:string|null): Promise<LogoContext> {
-
-
+export async function parseUrl(
+    ctx: AstroContext,
+    rawUrl: string | null,
+): Promise<LogoContext> {
     const requestUrl = new URL(ctx.request.url);
     if (rawUrl == null) {
-        rawUrl = requestUrl.searchParams.get('url');
+        rawUrl = requestUrl.searchParams.get("url");
     }
     if (!rawUrl) {
         return {
             pageContext: ctx,
             logger: parentLogger,
-            errCode: "MISSING_URL_PARAM",
+            errCode: ErrorCode.MISSING_URL_PARAM,
             requestUrl,
-            rawUrl: '',
+            rawUrl: "",
         };
     }
     const logger = parentLogger.child({ rawUrl });
 
     let parseableUrl = rawUrl;
-    if (!rawUrl.startsWith('http://') && !rawUrl.startsWith('https://')) {
+    if (!rawUrl.startsWith("http://") && !rawUrl.startsWith("https://")) {
         parseableUrl = `https://${rawUrl}`;
-        logger.info({ rawUrl, parseableUrl }, 'Adding https:// to URL')
+        logger.info({ rawUrl, parseableUrl }, "Adding https:// to URL");
     }
 
-    let url:URL;
+    let url: URL;
     try {
         url = new URL(parseableUrl);
     } catch (err: unknown) {
-        logger.error({ err: err as Error }, 'Error parsing URL');
+        logger.error({ err: err as Error }, "Error parsing URL");
         return {
             errCode: ErrorCode.INVALID_URL,
             logger,
@@ -57,7 +58,9 @@ export async function parseUrl(ctx: RequestContext, rawUrl:string|null): Promise
         };
     }
 
-    const basehost = hostname.toLowerCase().startsWith('www.') ? hostname.substring(4) : hostname;
+    const basehost = hostname.toLowerCase().startsWith("www.")
+        ? hostname.substring(4)
+        : hostname;
 
     return {
         basehost,
