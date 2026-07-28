@@ -6,6 +6,7 @@
   ],
   "main": "@astrojs/cloudflare/entrypoints/server",
   "name": "lucky-logo",
+  "preview_urls": false,
   "vars": {
     "COMMIT": "",
     "FORCE_HOST": "",
