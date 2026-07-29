@@ -1,57 +1,47 @@
-# Lucky Logo
+# To Do
 
-Gets the logo for a URL
+## Additional sources
 
-- [ ] build queue of additional lookups: social links, news feeds, title (for kg), website (for links from feed)
+- [ ] Scrape for social media links and get their logos
+- [ ] Scrape RSS/Atom feed links and get images they link to
+- [ ] Get every image on the page
 - [ ] [WikiData](https://stackoverflow.com/questions/40478860/how-to-get-social-media-links-from-google-knowledge/40762359#40762359) as source
+- [ ] [LogoSearch](https://logosear.ch/)
+
+## General
+
+- [ ] is GKG working?
+- [ ] compare: drop-down for who to compare against (with "all" option)
+- [ ] analyze: I'm feeling lucky button for a random site
+- [ ] separate page to analyze feeds
 - [ ] timeouts on all fetches
 - [ ] timeouts on DNS lookups
+- [ ] APIs
 - [ ] custom user-agent on fetches
 - [ ] more info from fetches: contentType, contentLength, sniffType, width/height, etc
-- [ ] change contribution: none
 - [ ] random site for single test
-- [ ] switch to Cloudflare Workers
 - [ ] wrap `fetch()` calls: `loadUrl()`
-- [ ] global settings: from `docs/_config.yaml`
-- [ ] support for `LOG_LEVEL`
 - [ ] figure out `Response.redirect` for local urls
-- [ ] script to generate a list of URLs from the top N websites
-- [ ] errors: enum of custom type
-- [ ] errors: include an emoji fallback image for each error
-- [ ] `/errors.html` - display each error with description, how-to-fix, image
 - [ ] `/recent.html` recent results
 - [ ] note about `referrerpolicy=origin`
-- [ ] `/users.html` - recent users from referrers
+- [ ] `/users.html` - recent referrers
+- [ ] prevent denial-of-service/overuse
 
-## provenances
+## Caching
 
-- [ ] atom
-- [ ] rss
-- [ ] vectorlogozone
-- [ ] wikipedia
-- [ ] schema.org metadata
-
-## Cache structure
-
-- requested URL (key)
-- provenance of icon (enum below)
-- URL of icon
-- content type
-- bytes of icon
-
-Separate cache of page contents:
-- key: url
-- value: HTML contents (max N kb)
-- this may be handled by Cloudflare `fetch()` caching
-
-- cache option: Cloudflare KV
-- cache option: memory
-- cache option: disk
-- cache option: redis
-- option to bypass cache
+- key: requested URL (or canonicalized version of it?)
+- data
+    - provenance
+    - image URL
+    - content type
+    - raw bytes (or not?)
+- pluggable providers
 
 ## Future
 
+- configurable (or at least overridable) error/fallback images
+- configurable DNS provider
+- Dockerfile version (or at least instructions for one)
 - toggle for withBackground css class
 - home page clickable image: go to website (not image) for samples
 - handle `data:` URLs
@@ -65,6 +55,4 @@ Separate cache of page contents:
 - specify size (to get closest raster if no svg)
 - system fallbacks: map of regex to image url
 
-## Open
 
-- prevent denial-of-service/overuse

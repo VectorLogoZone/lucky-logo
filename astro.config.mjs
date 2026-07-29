@@ -8,6 +8,7 @@ export default defineConfig({
             enabled: true,
         },
     }),
+    compressHTML: false,
     output: "server",
     redirects: {
         "/all-logos.html": "/analyze.html",
@@ -16,4 +17,5 @@ export default defineConfig({
     server: {
         port: 4000,
     },
+    "site": "https://lucky.logosear.ch",
 });

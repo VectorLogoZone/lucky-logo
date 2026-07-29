@@ -1,5 +1,4 @@
 import type { APIRoute } from 'astro';
-import { env } from 'cloudflare:workers';
 
 import { getFirst } from '../lib/getFirst';
 import { handleJson } from "../lib/handleJson";

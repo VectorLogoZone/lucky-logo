@@ -1,5 +1,4 @@
 import type { APIRoute } from 'astro';
-import { env } from 'cloudflare:workers';
 
 import { ErrorCode } from '../types/ErrorCode';
 import { getFailureImage } from '../lib/getFailureImage';
