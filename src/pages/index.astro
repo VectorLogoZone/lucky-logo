@@ -1,41 +1,21 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import random from "../data/random.txt";
 
 Astro.response.headers.set("Cache-Control", "public");
 
-const buttonTextOptions = [
-    "Roll the dice!",
-    "Try me!",
-    `I'm feeling lucky!`,
-    "Spin the wheel!",
-    "Please, god, let this work!",
-    "Lord have mercy!",
-    `Here's hoping...`,
-    "I believe!",
-    "Fortune favors the bold!",
-];
-
-const sampleWebsites = [
-    "https://www.fortune.ninja/",
-    "https://www.freeloader.wtf/",
-    "https://iconsear.ch/",
-    "https://logosear.ch/",
-    "https://www.rss.style/",
-    "https://www.sitemap.style/",
-    "https://resolve.rs/",
-    "https://www.vectorlogo.zone/",
-];
-
 const requestUrl = new URL(Astro.request.url);
 let website = requestUrl.searchParams.get("url");
+
+// only websites above 1000
+const sampleWebsites = random.trim().split("\n").slice(1000);
+
 if (!website || sampleWebsites.includes(website)) {
     website = sampleWebsites[Math.floor(Math.random() * sampleWebsites.length)];
 }
 
 const logoUrl = `/logo?url=${encodeURIComponent(website)}`;
 const allUrl = `/analyze.html?url=${encodeURIComponent(website)}`;
-const buttonText =
-    buttonTextOptions[Math.floor(Math.random() * buttonTextOptions.length)];
 const origin = requestUrl.origin;
 ---
 
@@ -45,18 +25,16 @@ const origin = requestUrl.origin;
 >
     <p>
         Lucky Logo is a quick way to embed a website's logo without doing any
-        work. <a href="/faq">More...</a>
+        work. <a href="/faq.html">More...</a>
     </p>
 
     <form method="GET" action="/">
-        <fieldset>
-            <label>
-                Website
-                <input value={website} name="url" />
-            </label>
-            <input type="submit" value={buttonText} />
-        </fieldset>
+        <h2>Demo</h2>
 
+        <label>
+            URL to use in your img tag:
+            <input name="website" value={website} />
+        </label>
         <label>
             URL to use in your img tag:
             <input value={`${origin}${logoUrl}`} id="logourl" />
@@ -68,5 +46,6 @@ const origin = requestUrl.origin;
                 >
             </div>
         </div>
+        <input type="submit" value="Another demo please!" />
     </form>
 </BaseLayout>
